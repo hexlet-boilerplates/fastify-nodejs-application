@@ -1,0 +1,5 @@
+.env
+.bash_history
+node_modules
+dist
+db.development.sqlite

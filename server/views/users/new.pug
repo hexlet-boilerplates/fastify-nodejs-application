@@ -1,0 +1,10 @@
+extends ../layouts/application.pug
+
+block content
+  form(action='/users'  method='post')
+    +input('email', 'text', 'Email address', 'Email')
+    +input('firstName', 'text', 'First name', 'First name')
+    +input('lastName', 'text', 'Last name', 'Last name')
+    +input('password', 'password', 'Password', 'Password')
+    .form-group
+      input.btn.btn-primary(type='submit' value='Sign Up')

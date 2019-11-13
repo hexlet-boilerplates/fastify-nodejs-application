@@ -1,0 +1,8 @@
+extends ../layouts/application.pug
+
+block content
+  form(action='/session'  method='post')
+    +input('email', 'text', 'Email address', 'Email')
+    +input('password', 'password', 'Password', 'Password')
+    .form-group
+      input.btn.btn-primary(type='submit' value='Sign In')

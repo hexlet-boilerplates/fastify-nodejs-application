@@ -1,0 +1,63 @@
+{
+  "name": "fastify-nodejs-application",
+  "version": "0.1.0",
+  "description": "fastify-nodejs-application",
+  "main": "",
+  "scripts": {
+    "test": "jest",
+    "build-server": "babel server --out-dir dist --source-maps inline",
+    "build-app": "NODE_ENV=production npx webpack -p",
+    "build": "rm -rf dist && npm run build-app && npm run build-server",
+    "postinstall": "npm run build",
+    "start": "npm run build && NODE_ENV=production ./dist/bin/server.js",
+    "develop": "npx nodemon --exec DEBUG=application:* npx babel-node server/bin/server.js"
+  },
+  "author": "Stanislav Dzisiak",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hexlet-boilerplates/fastify-nodejs-application.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hexlet-boilerplates/fastify-nodejs-application/issues"
+  },
+  "homepage": "https://github.com/hexlet-boilerplates/fastify-nodejs-application.git#readme",
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "fastify": "^2.10.0",
+    "fastify-cookie": "^3.2.0",
+    "fastify-flash": "^1.0.5",
+    "fastify-formbody": "^3.1.0",
+    "fastify-session": "^3.1.0",
+    "fastify-static": "^2.5.0",
+    "fastify-webpack-hmr": "^2.1.0",
+    "lodash": "^4.17.15",
+    "point-of-view": "^3.7.0",
+    "pug": "^2.0.4",
+    "sequelize": "^5.21.2",
+    "sqlite3": "^4.1.0",
+    "webpack": "^4.41.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
+    "@babel/node": "^7.6.3",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/register": "^7.6.2",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.0",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-flowtype": "^4.3.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^23.0.2",
+    "jest": "^24.9.0",
+    "jest-cli": "^24.9.0",
+    "nodemon": "^1.19.4",
+    "sequelize-cli": "^5.5.1",
+    "style-loader": "^1.0.0",
+    "webpack-cli": "^3.3.10"
+  }
+}

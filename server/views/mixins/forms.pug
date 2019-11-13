@@ -1,0 +1,13 @@
+mixin input(name, type, label, placeholder)
+  - const isError = _.has(errors, name);
+  - const message = isError ? errors[name].map(({ message }) => message).join(' ') : 'Looks good!';
+  - let inputClass = '';
+  - let divClass = '';
+  if (!init)
+    - inputClass = isError ? 'is-invalid' : 'is-valid';
+    - divClass = isError ? 'invalid-feedback' : 'valid-feedback';
+  .form-group
+    label= label
+    input.form-control(class= inputClass name=`form[${name}]` type=`${type}` value= `${form[name]}` placeholder= `${placeholder}`)
+    if (!init)
+      div(class= divClass)= message
