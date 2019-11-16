@@ -18,7 +18,6 @@ export default (sequelize, DataTypes) => {
       },
       email: {
         type: DataTypes.STRING,
-        unique: true,
         validate: {
           isEmail: true,
         },
@@ -46,6 +45,11 @@ export default (sequelize, DataTypes) => {
       },
     },
     {
+      indexes: [
+        {
+          fields: ['email'],
+        },
+      ],
       getterMethods: {
         fullName() {
           return `${this.firstName} ${this.lastName}`;
