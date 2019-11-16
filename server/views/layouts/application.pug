@@ -7,18 +7,18 @@ html(lang="en")
     script(src='/assets/main.js')
   body
     nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-3
-      a.navbar-brand(href="/") Task Manager
+      a.navbar-brand(href=getUrl('root')) Task Manager
       button.navbar-toggler(data-toggle="collapse" data-target="#navbarSupportedContent")
         span.navbar-toggler-icon
       .collapse.navbar-collapse
         ul.navbar-nav.mr-auto
           li.nav-item
-            a.nav-link(href='/users') Users
+            a.nav-link(href=getUrl('users')) Users
         ul.navbar-nav
           li.nav-item
-            a.nav-link(href='/session/new') Sign In
+            a.nav-link(href=getUrl('newSession')) Sign In
           li.nav-item
-            a.nav-link(href='/users/new') Sign Up
+            a.nav-link(href=getUrl('newUser')) Sign Up
     .container
       - const isFlash = _.get(flash, 'info', false);
       if isFlash

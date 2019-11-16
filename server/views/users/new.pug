@@ -1,7 +1,7 @@
 extends ../layouts/application.pug
 
 block content
-  form(action='/users'  method='post')
+  form(action=getUrl('users')  method='post')
     +input('email', 'text', 'Email address', 'Email')
     +input('firstName', 'text', 'First name', 'First name')
     +input('lastName', 'text', 'Last name', 'Last name')

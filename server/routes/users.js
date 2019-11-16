@@ -3,11 +3,11 @@ import { buildFromObj, buildFromModel } from '../lib/formObjectBuilder';
 
 export default (app) => {
   app
-    .get('/users', async (req, reply) => {
+    .get('/users', { name: 'users' }, async (req, reply) => {
       const users = await User.findAll();
       reply.view('users/index', { users });
     })
-    .get('/users/new', async (req, reply) => {
+    .get('/users/new', { name: 'newUser' }, async (req, reply) => {
       const params = buildFromModel(User.rawAttributes);
       reply.view('users/new', params);
     })
@@ -18,7 +18,7 @@ export default (app) => {
       try {
         await user.save();
         req.flash('info', 'User has been created');
-        reply.redirect('/');
+        reply.redirect(app.reverse('root'));
       } catch (e) {
         const params = buildFromObj(user.dataValues, e.errors);
         reply.view('users/new', params);

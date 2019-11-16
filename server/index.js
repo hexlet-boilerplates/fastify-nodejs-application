@@ -8,6 +8,7 @@ import fastifyFormbody from 'fastify-formbody';
 import fastifySession from 'fastify-session';
 import fastifyCookie from 'fastify-cookie';
 import fastifyFlash from 'fastify-flash';
+import fastifyReverseRoutes from 'fastify-reverse-routes';
 import Pug from 'pug';
 import _ from 'lodash';
 
@@ -32,6 +33,7 @@ const setUpViews = (app) => {
     includeViewExtension: true,
     defaultContext: {
       _,
+      getUrl: (name) => app.reverse(name),
     },
     templates: path.join(__dirname, '..', 'server', 'views'),
   });
@@ -45,6 +47,7 @@ const setUpStaticAssets = (app) => {
 };
 
 const registerPlugins = (app) => {
+  app.register(fastifyReverseRoutes);
   app.register(fastifyFormbody);
   app.register(fastifyCookie);
   app.register(fastifySession, {

@@ -4,11 +4,11 @@ import encrypt from '../lib/secure';
 
 export default (app) => {
   app
-    .get('/session/new', async (req, reply) => {
+    .get('/session/new', { name: 'newSession' }, async (req, reply) => {
       const params = buildFromModel(User.rawAttributes);
       reply.view('session/new', params);
     })
-    .post('/session', async (req, reply) => {
+    .post('/session', { name: 'session' }, async (req, reply) => {
       const { body: { form } } = req;
       const { email, password } = form;
 
@@ -20,7 +20,7 @@ export default (app) => {
 
       if (user !== null && user.passwordDigest === encrypt(password)) {
         req.session.userId = user.id;
-        reply.redirect('/');
+        reply.redirect(app.reverse('root'));
         return;
       }
 

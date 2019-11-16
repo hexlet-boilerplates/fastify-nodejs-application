@@ -1,7 +1,7 @@
 extends ../layouts/application.pug
 
 block content
-  form(action='/session'  method='post')
+  form(action=getUrl('session')  method='post')
     +input('email', 'text', 'Email address', 'Email')
     +input('password', 'password', 'Password', 'Password')
     .form-group
