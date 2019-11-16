@@ -45,11 +45,6 @@ export default (sequelize, DataTypes) => {
       },
     },
     {
-      indexes: [
-        {
-          fields: ['email'],
-        },
-      ],
       getterMethods: {
         fullName() {
           return `${this.firstName} ${this.lastName}`;
