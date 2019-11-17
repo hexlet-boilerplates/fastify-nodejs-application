@@ -32,5 +32,16 @@ export default (app) => {
         },
       };
       reply.view('session/new', params);
+    })
+    .delete('/session', (req, reply) => {
+      if (app.isSignedIn()) {
+        req.destroySession((err) => {
+          if (err) {
+            reply.status(500);
+            reply.send('Internal Server Error');
+          }
+        });
+      }
+      reply.redirect('/');
     });
 };
