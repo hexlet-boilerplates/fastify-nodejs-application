@@ -14,6 +14,7 @@ import _ from 'lodash';
 
 import webpackConfig from '../webpack.config.babel';
 import addRoutes from './routes';
+import auth from './plugins/auth';
 
 const isProduction = process.env.NODE_ENV === 'production';
 const isDevelopment = !isProduction;
@@ -34,6 +35,7 @@ const setUpViews = (app) => {
     defaultContext: {
       _,
       getUrl: (name) => app.reverse(name),
+      isSignedIn: () => app.isSignedIn(),
     },
     templates: path.join(__dirname, '..', 'server', 'views'),
   });
@@ -57,10 +59,13 @@ const registerPlugins = (app) => {
     expires: 7 * 24 * 60 * 60,
   });
   app.register(fastifyFlash);
+  app.register(auth);
 };
 
 export default () => {
-  const app = fastify();
+  const app = fastify({
+    logger: isDevelopment,
+  });
 
   registerPlugins(app);
 

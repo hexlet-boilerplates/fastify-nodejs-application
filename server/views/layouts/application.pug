@@ -15,10 +15,16 @@ html(lang="en")
           li.nav-item
             a.nav-link(href=getUrl('users')) Users
         ul.navbar-nav
-          li.nav-item
-            a.nav-link(href=getUrl('newSession')) Sign In
-          li.nav-item
-            a.nav-link(href=getUrl('newUser')) Sign Up
+          if isSignedIn()
+            li.nav-item
+              form(action=getUrl('session')  method='post')
+                input(name="_method" type="hidden" value="delete")
+                input.btn.nav-link(type='submit' value='Sign Out')
+          else
+            li.nav-item
+              a.nav-link(href=getUrl('newSession')) Sign In
+            li.nav-item
+              a.nav-link(href=getUrl('newUser')) Sign Up
     .container
       - const isFlash = _.get(flash, 'info', false);
       if isFlash
