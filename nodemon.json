@@ -1,0 +1,4 @@
+{
+  "verbose": true,
+  "watch": ["server", "db", "webpack.config.babel.js"]
+}
