@@ -1,13 +1,13 @@
 import fp from 'fastify-plugin';
 import _ from 'lodash';
 
-export default fp((app, opts, next) => {
-  app.decorate('state', {});
-  app.decorate('isSignedIn', () => _.get(app.state, 'authenticated', false));
+export default fp((fastify, opts, next) => {
+  fastify.decorate('state', {});
+  fastify.decorate('isSignedIn', () => _.get(fastify.state, 'authenticated', false));
 
-  app.addHook('preValidation', (req, reply, done) => {
+  fastify.addHook('preValidation', (req, reply, done) => {
     const authenticated = !_.isUndefined(req.session.userId);
-    _.set(app.state, 'authenticated', authenticated);
+    _.set(fastify.state, 'authenticated', authenticated);
     done();
   });
 

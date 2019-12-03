@@ -15,6 +15,7 @@ import _ from 'lodash';
 import webpackConfig from '../webpack.config.babel';
 import addRoutes from './routes';
 import auth from './plugins/auth';
+import fastifyMethodOverride from './plugins/fastifyMethodOverride';
 
 const isProduction = process.env.NODE_ENV === 'production';
 const isDevelopment = !isProduction;
@@ -60,6 +61,7 @@ const registerPlugins = (app) => {
   });
   app.register(fastifyFlash);
   app.register(auth);
+  app.register(fastifyMethodOverride);
 };
 
 export default () => {
