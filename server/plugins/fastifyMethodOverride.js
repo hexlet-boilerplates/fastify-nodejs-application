@@ -1,3 +1,5 @@
+// @ts-check
+
 import fp from 'fastify-plugin';
 import _ from 'lodash';
 import { NotFound } from 'http-errors';

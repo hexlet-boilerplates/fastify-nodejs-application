@@ -1,3 +1,5 @@
+// @ts-check
+
 import path from 'path';
 import fastify from 'fastify';
 import webpack from 'webpack';

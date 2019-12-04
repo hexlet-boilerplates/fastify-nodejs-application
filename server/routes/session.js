@@ -1,3 +1,5 @@
+// @ts-check
+
 import { User } from '../models';
 import { buildFromObj, buildFromModel } from '../lib/formObjectBuilder';
 import encrypt from '../lib/secure';
