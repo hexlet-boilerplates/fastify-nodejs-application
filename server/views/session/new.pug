@@ -2,7 +2,7 @@ extends ../layouts/application.pug
 
 block content
   form(action=getUrl('session')  method='post')
-    +input('email', 'text', 'Email address', 'Email')
-    +input('password', 'password', 'Password', 'Password')
+    +input('email', 'text', getText('forms.email'), getText('forms.email'))
+    +input('password', 'password', getText('forms.password'), getText('forms.password'))
     .form-group
-      input.btn.btn-primary(type='submit' value='Sign In')
+      input.btn.btn-primary(type='submit' value=getText('controls.signIn'))

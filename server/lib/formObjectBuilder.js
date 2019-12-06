@@ -1,3 +1,5 @@
+// @ts-check
+
 import _ from 'lodash';
 
 export const buildFromObj = (object, errors = {}) => ({

@@ -1,3 +1,5 @@
+// @ts-check
+
 import welcome from './welcome';
 import users from './users';
 import session from './session';

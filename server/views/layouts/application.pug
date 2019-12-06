@@ -7,24 +7,24 @@ html(lang="en")
     script(src='/assets/main.js')
   body
     nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-3
-      a.navbar-brand(href=getUrl('root')) Task Manager
+      a.navbar-brand(href=getUrl('root'))= getText('menu.taskManager')
       button.navbar-toggler(data-toggle="collapse" data-target="#navbarSupportedContent")
         span.navbar-toggler-icon
       .collapse.navbar-collapse
         ul.navbar-nav.mr-auto
           li.nav-item
-            a.nav-link(href=getUrl('users')) Users
+            a.nav-link(href=getUrl('users'))= getText('menu.users')
         ul.navbar-nav
           if isSignedIn()
             li.nav-item
               form(action=getUrl('session')  method='post')
                 input(name="_method" type="hidden" value="delete")
-                input.btn.nav-link(type='submit' value='Sign Out')
+                input.btn.nav-link(type='submit' value=getText('controls.signOut'))
           else
             li.nav-item
-              a.nav-link(href=getUrl('newSession')) Sign In
+              a.nav-link(href=getUrl('newSession'))= getText('controls.signIn')
             li.nav-item
-              a.nav-link(href=getUrl('newUser')) Sign Up
+              a.nav-link(href=getUrl('newUser'))= getText('controls.signUp')
     .container
       - const isFlash = _.get(flash, 'info', false);
       if isFlash

@@ -4,9 +4,9 @@ block content
   table.table.table-striped
     thead
       tr
-        th Full Name
-        th Email
-        th Created At
+        th= getText('users.fullName')
+        th= getText('users.email')
+        th= getText('users.createdAt')
     tbody
       each user in users
         tr

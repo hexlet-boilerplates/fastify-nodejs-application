@@ -1,0 +1,29 @@
+{
+  "messages": {
+    "authFailed": "Email or password were wrong",
+    "createUserSuccess": "User has been created"
+  },
+  "menu": {
+    "taskManager": "Task Manager",
+    "users": "Users"
+  },
+  "controls": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "signOut": "Sign Out"
+  },
+  "users": {
+    "fullName": "Full Name",
+    "email": "Email",
+    "createdAt": "Created At"
+  },
+  "forms": {
+    "email": "Email address",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "password": "Password"
+  },
+  "content": {
+    "welcome": "Welcome!"
+  }
+}

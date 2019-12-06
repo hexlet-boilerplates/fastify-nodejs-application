@@ -1,3 +1,5 @@
+// @ts-check
+
 import crypto from 'crypto';
 
 export default (value) => crypto.createHash('sha256')

@@ -1,3 +1,5 @@
+// @ts-check
+
 import { User } from '../models';
 import { buildFromObj, buildFromModel } from '../lib/formObjectBuilder';
 
@@ -17,7 +19,7 @@ export default (app) => {
 
       try {
         await user.save();
-        req.flash('info', 'User has been created');
+        req.flash('info', req.i18n.t('messages.createUserSuccess'));
         reply.redirect(app.reverse('root'));
       } catch (e) {
         const params = buildFromObj(user.dataValues, e.errors);

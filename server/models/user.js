@@ -1,3 +1,5 @@
+// @ts-check
+
 import encrypt from '../lib/secure';
 
 export default (sequelize, DataTypes) => {
