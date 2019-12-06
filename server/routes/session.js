@@ -1,5 +1,6 @@
 // @ts-check
 
+import { InternalServerError } from 'http-errors';
 import { User } from '../models';
 import { buildFromObj, buildFromModel } from '../lib/formObjectBuilder';
 import encrypt from '../lib/secure';
@@ -30,7 +31,7 @@ export default (app) => {
         ...buildFromObj({ email }),
         init: true,
         flash: {
-          info: ['email or password were wrong'],
+          info: [req.i18n.t('messages.authFailed')],
         },
       };
       reply.view('session/new', params);
@@ -39,8 +40,7 @@ export default (app) => {
       if (app.isSignedIn()) {
         req.destroySession((err) => {
           if (err) {
-            reply.status(500);
-            reply.send('Internal Server Error');
+            throw new InternalServerError();
           }
         });
       }

@@ -13,6 +13,8 @@ import fastifyFlash from 'fastify-flash';
 import fastifyReverseRoutes from 'fastify-reverse-routes';
 import Pug from 'pug';
 import _ from 'lodash';
+import i18next from 'i18next';
+import i18nextBackend from 'i18next-node-fs-backend';
 
 import webpackConfig from '../webpack.config.babel';
 import addRoutes from './routes';
@@ -24,6 +26,7 @@ const isDevelopment = !isProduction;
 
 const setUpWebpackHotReload = (app) => {
   if (isDevelopment) {
+    // @ts-ignore
     const compiler = webpack(webpackConfig);
     app.register(HMR, { compiler });
   }
@@ -39,6 +42,7 @@ const setUpViews = (app) => {
       _,
       getUrl: (name) => app.reverse(name),
       isSignedIn: () => app.isSignedIn(),
+      getText: (keys) => app.i18n.t(keys),
     },
     templates: path.join(__dirname, '..', 'server', 'views'),
   });
@@ -49,6 +53,22 @@ const setUpStaticAssets = (app) => {
     root: path.join(__dirname, '..', 'dist', 'public'),
     prefix: '/assets/',
   });
+};
+
+const setupLocalization = (app) => {
+  i18next
+    .use(i18nextBackend)
+    .init({
+      lng: 'en',
+      fallbackLng: 'en',
+      debug: isDevelopment,
+      backend: {
+        loadPath: path.join(__dirname, '..', 'locales', '{{lng}}.json'),
+      },
+    });
+
+  app.decorateRequest('i18n', i18next);
+  app.decorate('i18n', i18next);
 };
 
 const registerPlugins = (app) => {
@@ -74,6 +94,7 @@ export default () => {
   registerPlugins(app);
 
   setUpWebpackHotReload(app);
+  setupLocalization(app);
   setUpViews(app);
   setUpStaticAssets(app);
   addRoutes(app);

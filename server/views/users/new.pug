@@ -2,9 +2,9 @@ extends ../layouts/application.pug
 
 block content
   form(action=getUrl('users')  method='post')
-    +input('email', 'text', 'Email address', 'Email')
-    +input('firstName', 'text', 'First name', 'First name')
-    +input('lastName', 'text', 'Last name', 'Last name')
-    +input('password', 'password', 'Password', 'Password')
+    +input('email', 'text', getText('forms.email'), getText('forms.email'))
+    +input('firstName', 'text', getText('forms.firstName'), getText('forms.firstName'))
+    +input('lastName', 'text', getText('forms.lastName'), getText('forms.lastName'))
+    +input('password', 'password', getText('forms.password'), getText('forms.password'))
     .form-group
-      input.btn.btn-primary(type='submit' value='Sign Up')
+      input.btn.btn-primary(type='submit' value=getText('controls.signUp'))
