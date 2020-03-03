@@ -1,10 +1,10 @@
 extends ../layouts/application.pug
 
 block content
-  form(action=getUrl('users')  method='post')
-    +input('email', 'text', getText('forms.email'), getText('forms.email'))
-    +input('firstName', 'text', getText('forms.firstName'), getText('forms.firstName'))
-    +input('lastName', 'text', getText('forms.lastName'), getText('forms.lastName'))
-    +input('password', 'password', getText('forms.password'), getText('forms.password'))
+  form(action=route('users')  method='post')
+    +input('email', 'text', t('forms.email'), t('forms.email'))
+    +input('firstName', 'text', t('forms.firstName'), t('forms.firstName'))
+    +input('lastName', 'text', t('forms.lastName'), t('forms.lastName'))
+    +input('password', 'password', t('forms.password'), t('forms.password'))
     .form-group
-      input.btn.btn-primary(type='submit' value=getText('controls.signUp'))
+      input.btn.btn-primary(type='submit' value=t('controls.signUp'))

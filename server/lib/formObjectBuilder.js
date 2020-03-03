@@ -2,6 +2,10 @@
 
 import _ from 'lodash';
 
+/**
+ * @param {Object} object
+ * @param {Object} errors
+ */
 export const buildFromObj = (object, errors = {}) => ({
   init: false,
   name: 'form',
@@ -9,6 +13,10 @@ export const buildFromObj = (object, errors = {}) => ({
   errors: _.groupBy(errors, 'path'),
 });
 
+/**
+ * @param {Object} object
+ * @param {Object} errors
+ */
 export const buildFromModel = (object, errors = {}) => ({
   init: true,
   name: 'form',

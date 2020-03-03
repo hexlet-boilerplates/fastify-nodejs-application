@@ -7,24 +7,24 @@ html(lang="en")
     script(src='/assets/main.js')
   body
     nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-3
-      a.navbar-brand(href=getUrl('root'))= getText('menu.taskManager')
+      a.navbar-brand(href=route('root'))= t('menu.taskManager')
       button.navbar-toggler(data-toggle="collapse" data-target="#navbarSupportedContent")
         span.navbar-toggler-icon
       .collapse.navbar-collapse
         ul.navbar-nav.mr-auto
           li.nav-item
-            a.nav-link(href=getUrl('users'))= getText('menu.users')
+            a.nav-link(href=route('users'))= t('menu.users')
         ul.navbar-nav
           if isSignedIn()
             li.nav-item
-              form(action=getUrl('session')  method='post')
+              form(action=route('session')  method='post')
                 input(name="_method" type="hidden" value="delete")
-                input.btn.nav-link(type='submit' value=getText('controls.signOut'))
+                input.btn.nav-link(type='submit' value=t('controls.signOut'))
           else
             li.nav-item
-              a.nav-link(href=getUrl('newSession'))= getText('controls.signIn')
+              a.nav-link(href=route('newSession'))= t('controls.signIn')
             li.nav-item
-              a.nav-link(href=getUrl('newUser'))= getText('controls.signUp')
+              a.nav-link(href=route('newUser'))= t('controls.signUp')
     .container
       - const isFlash = _.get(flash, 'info', false);
       if isFlash

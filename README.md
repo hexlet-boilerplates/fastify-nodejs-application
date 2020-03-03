@@ -6,26 +6,15 @@
 This repository is created and maintained by the team and the community of Hexlet, an educational project. [Read more about Hexlet (in Russian)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=koa-nodejs-application).
 ##
 
-## Requirements
-
-* Docker
-
 ## Setup
 
 ```sh
-make compose-setup
+$ make setup
 ```
 
-## Run in production mode
+## Run
 
 ```sh
-make compose
+$ make start
+# Open localhost:4000
 ```
-
-## Run in develop mode
-
-```sh
-make compose-develop
-```
-
-Open localhost:4000

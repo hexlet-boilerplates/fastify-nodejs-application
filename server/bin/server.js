@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
 import _ from 'lodash';
-import getApp from '..';
+import getApp from '../index.js';
 
 const port = _.get(process, 'env.PORT', 4000);
 const address = '0.0.0.0';
