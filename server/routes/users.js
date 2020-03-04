@@ -9,10 +9,10 @@ export default (app) => {
       // const users = await User.findAll();
       // reply.view('users/index', { users });
     })
-  //   .get('/users/new', { name: 'newUser' }, async (req, reply) => {
+    .get('/users/new', { name: 'newUser' }, async (req, reply) => {
   //     const params = buildFromModel(User.rawAttributes);
   //     reply.view('users/new', params);
-  //   })
+    })
   //   .post('/users', async (req, reply) => {
   //     const { body: { form } } = req;
   //     const user = User.build(form);

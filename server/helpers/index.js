@@ -6,5 +6,8 @@ export default (app) => ({
   },
   t(key) {
     return key;
+  },
+  isSignedIn() {
+
   }
 });
