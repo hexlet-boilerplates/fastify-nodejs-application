@@ -1,8 +1,10 @@
 extends ../layouts/application.pug
 
 block content
-  form(action=route('session')  method='post')
-    +input(user, 'email')(type="text")
+  +formFor()(action=route('session') method='post')
+    +input(user, 'email', errors)(type="text")
+    +input(user, 'password', errors)(type="password")
+    +submit()
   // +formFor(f)(url=route('session') method='post')
   //   +input(f, 'email')
   //   +input(f, 'password', { as: 'password' })

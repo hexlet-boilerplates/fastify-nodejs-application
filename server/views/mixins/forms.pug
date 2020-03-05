@@ -1,23 +1,23 @@
 - const getInputName = (entity, property) => `${entity.constructor.name}[${property}]`
 
-mixin formFor(entity)
+mixin formFor(entity = null)
   form&attributes(attributes)
     block
 
 mixin input(entity, propertyName, errors = {})
   .form-group(class=(errors[propertyName] && 'has-danger'))
-    label= property
+    label= propertyName
     input(
-      name=getInputName(entity, property)
+      name=getInputName(entity, propertyName)
       class='form-control'
-      value=_.get(entity, property, '')
+      value=_.get(entity, propertyName, '')
     )&attributes(attributes)
     if errors[propertyName]
       .form-control-feedback= errors[propertyName].map(({ message }) => message).join('. ')
 
-mixin button(f, type = 'submit')
+mixin submit(form = null)
   .form-group
-    input(class='btn' type=`${type}` value=`Save`)
+    input(class='btn btn-primary' type='submit' value='Save')&attributes(attributes)
 
 // mixin input(data, name)
 //   - const isError = _.has(errors, name);
