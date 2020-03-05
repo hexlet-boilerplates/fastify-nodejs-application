@@ -4,12 +4,17 @@
 // import { User } from '../models';
 // import { buildFromObj, buildFromModel } from '../lib/formObjectBuilder';
 // import encrypt from '../lib/secure';
+import User from '../entity/User.js';
 
 export default (app) => {
   app
     .get('/session/new', { name: 'newSession' }, async (req, reply) => {
-      // const params = buildFromModel(User.rawAttributes);
-      // reply.view('session/new', params);
+      const user = new User(); // buildFromModel(User.rawAttributes);
+      // console.log(params);
+      // req.log.info('user', params);
+      reply.render('session/new', { user });
+      return reply;
+      // reply.send(204);
     })
     .post('/session', { name: 'session' }, async (req, reply) => {
       // const { body: { form } } = req;

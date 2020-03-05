@@ -1,8 +1,13 @@
 extends ../layouts/application.pug
 
 block content
-  form(action=getUrl('session')  method='post')
-    +input('email', 'text', getText('forms.email'), getText('forms.email'))
-    +input('password', 'password', getText('forms.password'), getText('forms.password'))
-    .form-group
-      input.btn.btn-primary(type='submit' value=getText('controls.signIn'))
+  form(action=route('session')  method='post')
+    +input(user, 'email')(type="text")
+  // +formFor(f)(url=route('session') method='post')
+  //   +input(f, 'email')
+  //   +input(f, 'password', { as: 'password' })
+  //   +button(f)
+  // t('forms.email'), t('forms.email'))
+  //   +input('password', 'password', getText('forms.password'), getText('forms.password'))
+  //   .form-group
+  //     input.btn.btn-primary(type='submit' value=getText('controls.signIn'))

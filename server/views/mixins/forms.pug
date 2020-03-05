@@ -1,13 +1,34 @@
-mixin input(name, type, label, placeholder)
-  - const isError = _.has(errors, name);
-  - const message = isError ? errors[name].map(({ message }) => message).join(' ') : 'Looks good!';
-  - let inputClass = '';
-  - let divClass = '';
-  if (!init)
-    - inputClass = isError ? 'is-invalid' : 'is-valid';
-    - divClass = isError ? 'invalid-feedback' : 'valid-feedback';
+- const getInputName = (entity, property) => `${entity.constructor.name}[${property}]`
+
+mixin formFor(entity)
+  form&attributes(attributes)
+    block
+
+mixin input(entity, propertyName, errors = {})
+  .form-group(class=(errors[propertyName] && 'has-danger'))
+    label= property
+    input(
+      name=getInputName(entity, property)
+      class='form-control'
+      value=_.get(entity, property, '')
+    )&attributes(attributes)
+    if errors[propertyName]
+      .form-control-feedback= errors[propertyName].map(({ message }) => message).join('. ')
+
+mixin button(f, type = 'submit')
   .form-group
-    label= label
-    input.form-control(class= inputClass name=`form[${name}]` type=`${type}` value= `${form[name]}` placeholder= `${placeholder}`)
-    if (!init)
-      div(class= divClass)= message
+    input(class='btn' type=`${type}` value=`Save`)
+
+// mixin input(data, name)
+//   - const isError = _.has(errors, name);
+//   - const message = isError ? errors[name].map(({ message }) => message).join(' ') : 'Looks good!';
+//   - let inputClass = '';
+//   - let divClass = '';
+//   if (!init)
+//     - inputClass = isError ? 'is-invalid' : 'is-valid';
+//     - divClass = isError ? 'invalid-feedback' : 'valid-feedback';
+//   .form-group
+//     label= label
+//     input.form-control(class=inputClass name=`form[${name}]` value= `${form[name]}`)&attributes(attributes)
+//     if (!init)
+//       div(class= divClass)= message

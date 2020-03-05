@@ -5,10 +5,13 @@ prepare:
 	touch .env
 
 start:
-	npm start
+	heroku local -f Procfile.dev
 
-develop:
+start-backend:
 	npx nodemon --exec npx babel-node server/bin/server.js
+
+start-frontend:
+	npx webpack-dev-server
 
 lint:
 	npx eslint .

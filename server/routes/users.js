@@ -6,8 +6,8 @@
 export default (app) => {
   app
     .get('/users', { name: 'users' }, async (req, reply) => {
-      // const users = await User.findAll();
-      // reply.view('users/index', { users });
+      const users = []; // await User.findAll();
+      reply.render('users/index', { users });
     })
     .get('/users/new', { name: 'newUser' }, async (req, reply) => {
   //     const params = buildFromModel(User.rawAttributes);

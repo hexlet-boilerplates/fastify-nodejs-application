@@ -1,32 +1,40 @@
 include ../mixins/forms.pug
 
 doctype html
-html(lang="en")
+html(lang="en").h-100
   head
-    title= Title
-    script(src='/assets/main.js')
-  body
+    title Hexlet Fastify Boilerplate
+    script(src=assetPath('main.js'))
+    link(href=assetPath('main.css'))
+  body.h-100.d-flex.flex-column
     nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-3
-      a.navbar-brand(href=route('root'))= t('menu.taskManager')
+      a.navbar-brand(href=route('root'))= t('appName')
       button.navbar-toggler(data-toggle="collapse" data-target="#navbarSupportedContent")
         span.navbar-toggler-icon
       .collapse.navbar-collapse
         ul.navbar-nav.mr-auto
           li.nav-item
-            a.nav-link(href=route('users'))= t('menu.users')
+            a.nav-link(href=route('users'))= t('layouts.application.users')
         ul.navbar-nav
           if isSignedIn()
             li.nav-item
               form(action=route('session')  method='post')
                 input(name="_method" type="hidden" value="delete")
-                input.btn.nav-link(type='submit' value=t('controls.signOut'))
+                input.btn.nav-link(type='submit' value=t('layouts.application.signOut'))
           else
             li.nav-item
-              a.nav-link(href=route('newSession'))= t('controls.signIn')
+              a.nav-link(href=route('newSession'))= t('layouts.application.signIn')
             li.nav-item
-              a.nav-link(href=route('newUser'))= t('controls.signUp')
-    .container
-      // - const isFlash = _.get(flash, 'info', false);
-      // if isFlash
-      //   .alert.alert-info.m-3= flash.info.join(' ')
+              a.nav-link(href=route('newUser'))= t('layouts.application.signUp')
+    .container.h-100
+
+      each messages, type in reply.flash()
+        each message in messages
+          div.alert= message
+
       block content
+
+    footer.footer.mt-100
+      .container.my-5.pt-4.border-top
+        a(target="_blank" href="https://ru.hexlet.io") Hexlet
+
