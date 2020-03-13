@@ -5,11 +5,12 @@ import path from 'path';
 import fastify from 'fastify';
 import fastifyStatic from 'fastify-static';
 import fastifyTypeORM from 'fastify-typeorm';
+// import { createConnection } from "typeorm";
 import fastifyErrorPage from 'fastify-error-page';
 import pointOfView from 'point-of-view';
 import fastifyFormbody from 'fastify-formbody';
-import fastifySession from 'fastify-session';
-import fastifyCookie from 'fastify-cookie';
+import fastifySecureSession from 'fastify-secure-session';
+// import fastifyCookie from 'fastify-cookie';
 import fastifyFlash from 'fastify-flash';
 import fastifyReverseRoutes from 'fastify-reverse-routes';
 import Pug from 'pug';
@@ -73,19 +74,26 @@ const registerPlugins = (app) => {
   app.register(fastifyErrorPage);
   app.register(fastifyReverseRoutes);
   app.register(fastifyFormbody);
-  app.register(fastifyCookie);
-  app.register(fastifySession, {
-    cookieName: 'sessionId',
+  // app.register(fastifyCookie);
+  app.register(fastifySecureSession, {
+    // cookieName: 'sessionId',
     secret: 'a secret with minimum length of 32 characters',
-    cookie: { secure: false },
-    expires: 7 * 24 * 60 * 60,
+    // cookie: { secure: false },
+    // expires: 7 * 24 * 60 * 60,
   });
   app.register(fastifyFlash);
   // app.register(auth);
   // app.register(fastifyMethodOverride);
-  // app.register(fastifyTypeORM, {
-  //   type: 'sql.js',
+  // createConnection({
+  //   type: 'sqljs',
+  //   synchronize: true,
+  //   logging: false,
+  // }).then((connection) => {
   // });
+  app.register(fastifyTypeORM, { type: 'sqljs' })
+    .after((err) => {
+      if (err) throw err;
+    });
 };
 
 export default () => {

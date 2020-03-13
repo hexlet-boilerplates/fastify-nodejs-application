@@ -5,14 +5,14 @@ export default @Entity() class User {
   @PrimaryGeneratedColumn()
   id = null;
 
-  @Column()
+  @Column('string')
   @IsNotEmpty()
   firstName = '';
 
-  @Column()
+  @Column('string')
   @IsNotEmpty()
   lastName = '';
 
-  // @Column()
-  // passwordDigest = '';
+  @Column('string')
+  passwordDigest = '';
 }
