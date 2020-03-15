@@ -1,18 +1,10 @@
 extends ../layouts/application.pug
 
 block header
-  | Sign In
+  = t('views.session.new.signIn')
 
 block content
   +formFor()(action=route('session') method='post')
     +input(signInForm, 'email')(type="text")
     +input(signInForm, 'password')(type="password")
-    +submit()
-  // +formFor(f)(url=route('session') method='post')
-  //   +input(f, 'email')
-  //   +input(f, 'password', { as: 'password' })
-  //   +button(f)
-  // t('forms.email'), t('forms.email'))
-  //   +input('password', 'password', getText('forms.password'), getText('forms.password'))
-  //   .form-group
-  //     input.btn.btn-primary(type='submit' value=getText('controls.signIn'))
+    +submit(signInForm)(value=t('views.session.new.submit'))

@@ -18,18 +18,9 @@ mixin input(entity, propertyName, errors = [])
 
 mixin submit(form = null)
   .form-group
-    input(class='btn btn-primary' type='submit' value='Save')&attributes(attributes)
+    input(class='btn btn-primary' type='submit')&attributes(attributes)
 
-// mixin input(data, name)
-//   - const isError = _.has(errors, name);
-//   - const message = isError ? errors[name].map(({ message }) => message).join(' ') : 'Looks good!';
-//   - let inputClass = '';
-//   - let divClass = '';
-//   if (!init)
-//     - inputClass = isError ? 'is-invalid' : 'is-valid';
-//     - divClass = isError ? 'invalid-feedback' : 'valid-feedback';
-//   .form-group
-//     label= label
-//     input.form-control(class=inputClass name=`form[${name}]` value= `${form[name]}`)&attributes(attributes)
-//     if (!init)
-//       div(class= divClass)= message
+mixin buttonTo(action, method)
+  form(action=action, method="post")
+    input(name="_method" type="hidden" value=method)
+    input(type='submit')&attributes(attributes)

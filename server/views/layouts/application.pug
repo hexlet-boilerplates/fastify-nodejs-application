@@ -16,11 +16,9 @@ html(lang="en").h-100
           li.nav-item
             a.nav-link(href=route('users'))= t('layouts.application.users')
         ul.navbar-nav
-          if !reply.request.currentUser
+          if reply.request.signedIn
             li.nav-item
-              form(action=route('session')  method='post')
-                input(name="_method" type="hidden" value="delete")
-                input.btn.nav-link(type='submit' value=t('layouts.application.signOut'))
+              +buttonTo(route('session'), 'delete')(class="btn nav-link" value=t('layouts.application.signOut'))
           else
             li.nav-item
               a.nav-link(href=route('newSession'))= t('layouts.application.signIn')

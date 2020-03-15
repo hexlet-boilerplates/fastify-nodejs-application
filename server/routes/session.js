@@ -17,7 +17,6 @@ export default (app) => {
     .post('/session', { name: 'session' }, async (req, reply) => {
       const signInForm = req.body.object;
       const user = await User.findOne({ where: { email: signInForm.email } });
-      // console.log('!!!User', user, user.passwordDigest, encrypt(signInForm.password));
       if (!user || (user.passwordDigest !== encrypt(signInForm.password))) {
         req.flash('error', 'messages.signInError');
         return reply.render('session/new', { signInForm });
@@ -28,13 +27,7 @@ export default (app) => {
       return reply.redirect(app.reverse('root'));
     })
     .delete('/session', (req, reply) => {
-      // if (app.isSignedIn()) {
-      //   req.destroySession((err) => {
-      //     if (err) {
-      //       throw new InternalServerError();
-      //     }
-      //   });
-      // }
-      // reply.redirect('/');
+      req.session.delete();
+      return reply.redirect(app.reverse('root'));
     });
 };

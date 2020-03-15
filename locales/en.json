@@ -7,11 +7,6 @@
     "taskManager": "Task Manager",
     "users": "Users"
   },
-  "controls": {
-    "signIn": "Sign In",
-    "signUp": "Sign Up",
-    "signOut": "Sign Out"
-  },
   "users": {
     "fullName": "Full Name",
     "email": "Email",
