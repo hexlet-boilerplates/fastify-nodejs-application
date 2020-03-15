@@ -1,9 +1,12 @@
 extends ../layouts/application.pug
 
+block header
+  | Sign In
+
 block content
   +formFor()(action=route('session') method='post')
-    +input(user, 'email', errors)(type="text")
-    +input(user, 'password', errors)(type="password")
+    +input(signInForm, 'email')(type="text")
+    +input(signInForm, 'password')(type="password")
     +submit()
   // +formFor(f)(url=route('session') method='post')
   //   +input(f, 'email')

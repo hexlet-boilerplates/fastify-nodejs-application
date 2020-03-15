@@ -19,8 +19,11 @@ import i18next from 'i18next';
 import ru from './locales/ru.js';
 // import i18nextBackend from 'i18next-node-fs-backend';
 
+import ormconfig from '../ormconfig.js';
 import addRoutes from './routes/index.js';
 import getHelpers from './helpers/index.js';
+import User from './entity/User.js';
+import Guest from './entity/Guest.js';
 // import auth from './plugins/auth';
 // import fastifyMethodOverride from './plugins/fastifyMethodOverride';
 
@@ -70,6 +73,21 @@ const setupLocalization = (app) => {
   // app.decorate('i18n', i18next);
 };
 
+const addHooks = (app) => {
+  app.decorateRequest('currentUser', null);
+
+  app.addHook('preHandler', async (req, _reply) => {
+    const userId = req.session.get('userId');
+    console.log('!!!', 'session', userId);
+    if (userId) {
+      req.currentUser = await User.find(userId);
+    } else {
+      req.currentUser = new Guest();
+    }
+    console.log('!!!', 'current user', req.currentUser);
+  });
+};
+
 const registerPlugins = (app) => {
   app.register(fastifyErrorPage);
   app.register(fastifyReverseRoutes);
@@ -84,13 +102,7 @@ const registerPlugins = (app) => {
   app.register(fastifyFlash);
   // app.register(auth);
   // app.register(fastifyMethodOverride);
-  // createConnection({
-  //   type: 'sqljs',
-  //   synchronize: true,
-  //   logging: false,
-  // }).then((connection) => {
-  // });
-  app.register(fastifyTypeORM, { type: 'sqljs' })
+  app.register(fastifyTypeORM, ormconfig)
     .after((err) => {
       if (err) throw err;
     });
@@ -111,6 +123,7 @@ export default () => {
   setUpViews(app);
   setUpStaticAssets(app);
   addRoutes(app);
+  addHooks(app);
 
   return app;
 };

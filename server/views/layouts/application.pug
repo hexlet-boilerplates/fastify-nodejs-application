@@ -16,7 +16,7 @@ html(lang="en").h-100
           li.nav-item
             a.nav-link(href=route('users'))= t('layouts.application.users')
         ul.navbar-nav
-          if isSignedIn()
+          if !reply.request.currentUser
             li.nav-item
               form(action=route('session')  method='post')
                 input(name="_method" type="hidden" value="delete")
@@ -30,8 +30,10 @@ html(lang="en").h-100
 
       each messages, type in reply.flash()
         each message in messages
-          div.alert= message
+          div.alert(class=`alert-${getAlertClass(type)}`)= message
 
+      h1.my-4
+        block header
       block content
 
     footer.footer.mt-100

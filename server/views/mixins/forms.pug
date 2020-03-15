@@ -1,10 +1,11 @@
-- const getInputName = (entity, property) => `${entity.constructor.name}[${property}]`
+- const getInputName = (entity, property) => `${entity.constructor.name.toLowerCase()}[${property}]`
 
 mixin formFor(entity = null)
   form&attributes(attributes)
     block
 
-mixin input(entity, propertyName, errors = {})
+mixin input(entity, propertyName, errors = [])
+  - error = errors.find((error) => error.property === propertyName)
   .form-group(class=(errors[propertyName] && 'has-danger'))
     label= propertyName
     input(
@@ -12,8 +13,8 @@ mixin input(entity, propertyName, errors = {})
       class='form-control'
       value=_.get(entity, propertyName, '')
     )&attributes(attributes)
-    if errors[propertyName]
-      .form-control-feedback= errors[propertyName].map(({ message }) => message).join('. ')
+    if error
+      .form-control-feedback= Object.values(error.constraints).join('. ')
 
 mixin submit(form = null)
   .form-group
