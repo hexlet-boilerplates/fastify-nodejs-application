@@ -32,7 +32,7 @@
       "fastify-error-page": "^3.0.0",
       "fastify-flash": "^1.0.6",
       "fastify-formbody": "^3.1.0",
-      "fastify-method-override": "^1.0.3",
+      "fastify-method-override": "^1.0.5",
       "fastify-plugin": "^1.6.1",
       "fastify-reverse-routes": "^1.1.0",
       "fastify-secure-session": "^1.2.0",

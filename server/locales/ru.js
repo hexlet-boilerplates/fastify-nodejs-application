@@ -1,6 +1,23 @@
 module.exports = {
   translation: {
     appName: 'Fastify Шаблон',
+    flash: {
+      session: {
+        create: {
+          success: 'Пользователь был успешно создан',
+          error: 'Неправильный емейл или пароль',
+        },
+        delete: {
+          success: 'Вы разлогинены',
+        }
+      },
+      users: {
+        create: {
+          error: 'Не удалось зарегистрировать',
+          success: 'Пользователь успешно зарегистрирован',
+        },
+      },
+    },
     layouts: {
       application: {
         users: 'Пользователи',
@@ -32,4 +49,3 @@ module.exports = {
     },
   },
 };
-

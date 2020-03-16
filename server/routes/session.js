@@ -1,9 +1,6 @@
 // @ts-check
 
-// import { InternalServerError } from 'http-errors';
-// import { User } from '../models';
-// import { buildFromObj, buildFromModel } from '../lib/formObjectBuilder';
-// import encrypt from '../lib/secure';
+import i18next from 'i18next';
 import User from '../entity/User.js';
 import encrypt from './../lib/secure.js';
 
@@ -18,16 +15,17 @@ export default (app) => {
       const signInForm = req.body.object;
       const user = await User.findOne({ where: { email: signInForm.email } });
       if (!user || (user.passwordDigest !== encrypt(signInForm.password))) {
-        req.flash('error', 'messages.signInError');
+        req.flash('error', i18next.t('flash.session.create.error'));
         return reply.render('session/new', { signInForm });
       }
 
       req.session.set('userId', user.id);
-      req.flash('info', 'messages.createUserSuccess');
+      req.flash('info', i18next.t('flash.session.create.success'));
       return reply.redirect(app.reverse('root'));
     })
     .delete('/session', (req, reply) => {
       req.session.delete();
+      req.flash('info', i18next.t('flash.session.delete.success'));
       return reply.redirect(app.reverse('root'));
     });
 };

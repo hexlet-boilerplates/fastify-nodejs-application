@@ -1,5 +1,6 @@
 // @ts-check
 
+import i18next from 'i18next';
 import { validate } from 'class-validator';
 import _ from 'lodash';
 import encrypt from '../lib/secure.js';
@@ -24,11 +25,11 @@ export default (app) => {
 
       const errors = await validate(user);
       if (!_.isEmpty(errors)) {
-        req.flash('error', 'messages.createUserError');
+        req.flash('error', i18next.t('flash.users.create.error'));
         return reply.render('users/new', { user, errors });
       }
       await user.save();
-      req.flash('info', 'messages.createUserSuccess');
+      req.flash('info', i18next.t('flash.users.create.success'));
       return reply.redirect(app.reverse('root'));
     });
 };

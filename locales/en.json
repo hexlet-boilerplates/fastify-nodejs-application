@@ -1,5 +1,5 @@
 {
-  "messages": {
+  "flash": {
     "authFailed": "Email or password were wrong",
     "createUserSuccess": "User has been created"
   },
