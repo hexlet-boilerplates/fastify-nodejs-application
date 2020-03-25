@@ -26,9 +26,14 @@ html(lang="en").h-100
               a.nav-link(href=route('newUser'))= t('layouts.application.signUp')
     .container.h-100
 
-      each messages, type in reply.flash()
-        each message in messages
-          div.alert(class=`alert-${getAlertClass(type)}`)= message
+      - var ivents = reply.flash()
+      if ivents
+        each messages, type in ivents
+          each message in messages
+            div.alert(class=`alert-${getAlertClass(type)}`)= message
+      else
+        -var iventLogout = { message: t('flash.session.delete.success'), type: getAlertClass('info') }
+        div.alert(class=`alert-${iventLogout.type}`)= iventLogout.message
 
       h1.my-4
         block header
