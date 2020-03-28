@@ -24,7 +24,7 @@ export default (app) => {
       return reply.redirect(app.reverse('root'));
     })
     .delete('/session', (req, reply) => {
-      req.session.delete();
+      req.session.set('userId', null);
       req.flash('info', i18next.t('flash.session.delete.success'));
       return reply.redirect(app.reverse('root'));
     });

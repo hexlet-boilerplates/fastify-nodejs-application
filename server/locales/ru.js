@@ -4,12 +4,12 @@ module.exports = {
     flash: {
       session: {
         create: {
-          success: 'Пользователь был успешно создан',
+          success: 'Вы залогинены',
           error: 'Неправильный емейл или пароль',
         },
         delete: {
           success: 'Вы разлогинены',
-        }
+        },
       },
       users: {
         create: {
