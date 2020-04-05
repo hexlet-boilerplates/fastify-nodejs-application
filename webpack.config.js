@@ -10,6 +10,10 @@ module.exports = {
     path: path.join(__dirname, 'dist', 'public'),
     publicPath: '/assets/',
   },
+  devServer: {
+    host: 'localhost',
+    port: 5001,
+  },
   module: {
     rules: [
       {

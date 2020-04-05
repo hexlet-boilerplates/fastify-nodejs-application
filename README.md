@@ -16,5 +16,5 @@ $ make setup
 
 ```sh
 $ make start
-# Open localhost:4000
+# Open localhost:5000
 ```

@@ -9,7 +9,14 @@ export default (app) => ({
     return i18next.t(key);
   },
   _,
-  isSignedIn() {
-
-  }
+  getAlertClass(type) {
+    switch (type) {
+      case 'error':
+        return 'danger';
+      case 'info':
+        return 'info';
+      default:
+        throw new Error(`Unknown type: '${type}'`);
+    }
+  },
 });
