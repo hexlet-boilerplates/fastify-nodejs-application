@@ -15,6 +15,7 @@ import fastifyMethodOverride from 'fastify-method-override';
 import Pug from 'pug';
 import i18next from 'i18next';
 import ru from './locales/ru.js';
+import webpackConfig from '../webpack.config.js';
 
 import ormconfig from '../ormconfig.js';
 import addRoutes from './routes/index.js';
@@ -27,7 +28,9 @@ const isProduction = process.env.NODE_ENV === 'production';
 const isDevelopment = !isProduction;
 
 const setUpViews = (app) => {
-  const domain = isDevelopment ? 'http://localhost:8080' : '';
+  const { devServer } = webpackConfig;
+  const devHost = `http://${devServer.host}:${devServer.port}`;
+  const domain = isDevelopment ? devHost : '';
   const helpers = getHelpers(app);
   app.register(pointOfView, {
     engine: {
