@@ -11,12 +11,14 @@ export default (app) => {
   app
     .get('/users', { name: 'users' }, async (req, reply) => {
       const users = await app.orm.getRepository(User).find();
-      return reply.render('users/index', { users });
+      reply.render('users/index', { users });
+      return reply;
     })
     .get('/users/new', { name: 'newUser' }, async (req, reply) => {
     //     const params = buildFromModel(User.rawAttributes);
       const user = new User();
-      return reply.render('users/new', { user });
+      reply.render('users/new', { user });
+      return reply;
     })
     .post('/users', async (req, reply) => {
       const user = User.create(req.body.user);
