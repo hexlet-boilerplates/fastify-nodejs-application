@@ -15,3 +15,9 @@ start-frontend:
 
 lint:
 	npx eslint .
+
+test:
+	npm run test
+
+test-dev:
+	npm run test-dev

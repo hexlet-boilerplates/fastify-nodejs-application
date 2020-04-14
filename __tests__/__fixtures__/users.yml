@@ -1,0 +1,20 @@
+entity: User
+items:
+  user:
+    "firstname": "Pitt"
+    "lastname": "Bull"
+    "email": "pittbull@fakedomain.com"
+    "password": "123456"
+    "role": "user"
+  admin:
+    "firstname": "Corona"
+    "lastname": "Virus"
+    "email": "coronavirus@2020.ru"
+    "password": "123456"
+    "role": "admin"
+  guest:
+    "firstname": "Dino"
+    "lastname": "Zavr"
+    "email": "dinozavr@fakedomain.com"
+    "password": "123456"
+    "role": "guest"

@@ -17,7 +17,7 @@ import i18next from 'i18next';
 import ru from './locales/ru.js';
 import webpackConfig from '../webpack.config.js';
 
-import ormconfig from '../ormconfig.js';
+// import ormconfig from '../ormconfig.js';
 import addRoutes from './routes/index.js';
 import getHelpers from './helpers/index.js';
 import User from './entity/User.js';
@@ -84,7 +84,7 @@ const addHooks = (app) => {
   });
 };
 
-const registerPlugins = (app) => {
+const registerPlugins = (app, config) => {
   app.register(fastifyErrorPage);
   app.register(fastifyReverseRoutes);
   app.register(fastifyFormbody);
@@ -98,13 +98,13 @@ const registerPlugins = (app) => {
   app.register(fastifyFlash);
   // app.register(auth);
   app.register(fastifyMethodOverride);
-  app.register(fastifyTypeORM, ormconfig)
+  app.register(fastifyTypeORM, config.db)
     .after((err) => {
       if (err) throw err;
     });
 };
 
-export default () => {
+export default async (config) => {
   const app = fastify({
     logger: {
       prettyPrint: isDevelopment,
@@ -113,13 +113,13 @@ export default () => {
     },
   });
 
-  registerPlugins(app);
+  registerPlugins(app, config);
 
   setupLocalization(app);
   setUpViews(app);
   setUpStaticAssets(app);
   addRoutes(app);
   addHooks(app);
-
+  await app.ready();
   return app;
 };
