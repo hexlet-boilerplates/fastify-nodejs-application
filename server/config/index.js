@@ -20,7 +20,7 @@ const appConfig = {
       type: 'sqlite',
       database: ':memory:',
       name: 'default',
-      logging: 'all',
+      logging: 'errors',
     },
     production: {
       username: 'root',

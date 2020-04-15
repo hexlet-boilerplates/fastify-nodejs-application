@@ -25,7 +25,9 @@ import Guest from './entity/Guest.js';
 // import auth from './plugins/auth';
 
 const isProduction = process.env.NODE_ENV === 'production';
-const isDevelopment = !isProduction;
+const isTest = process.env.NODE_ENV === 'test';
+
+const isDevelopment = !isProduction && !isTest;
 
 const setUpViews = (app) => {
   const { devServer } = webpackConfig;
