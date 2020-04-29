@@ -90,7 +90,7 @@ const registerPlugins = (app) => {
   app.register(fastifyFormbody);
   // app.register(fastifyCookie);
   app.register(fastifySecureSession, {
-    // cookieName: 'sessionId',
+    cookieName: 'sessionAuth',
     secret: 'a secret with minimum length of 32 characters',
     // cookie: { secure: false },
     // expires: 7 * 24 * 60 * 60,
