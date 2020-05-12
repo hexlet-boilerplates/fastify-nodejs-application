@@ -1,6 +1,9 @@
 setup:
 	npm install
 
+build:
+	npm run build
+
 prepare:
 	touch .env
 
@@ -15,6 +18,3 @@ start-frontend:
 
 lint:
 	npx eslint .
-
-test:
-	npm run test
