@@ -50,9 +50,11 @@ const setUpViews = (app) => {
 };
 
 const setUpStaticAssets = (app) => {
-  const domain = isDevelopment ? 'http://localhost:8080' : '';
+  const pathPublic = isDevelopment
+    ? path.join(__dirname, '..', 'dist', 'public')
+    : path.join(__dirname, '..', 'public');
   app.register(fastifyStatic, {
-    root: path.join(__dirname, '..', 'dist', 'public'),
+    root: pathPublic,
     prefix: '/assets/',
   });
 };

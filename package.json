@@ -9,7 +9,7 @@
       "build-server": "NODE_ENV=production babel server --out-dir dist/server --source-maps inline && npm run build-configs && cp -r server/views dist/server/views",
       "build-frontend": "NODE_ENV=production npx webpack -p",
       "build": "rm -rf dist && npm run build-frontend && npm run build-server",
-      "start": "node dist/server/bin/server.js",
+      "start": "NODE_ENV=production node dist/server/bin/server.js",
       "develop": "npx nodemon --exec DEBUG=application:* npx babel-node server/bin/server.js"
    },
    "author": "Stanislav Dzisiak",
