@@ -2,7 +2,7 @@
 
 import i18next from 'i18next';
 import User from '../entity/User.js';
-import encrypt from './../lib/secure.js';
+import encrypt from '../lib/secure.js';
 
 export default (app) => {
   app

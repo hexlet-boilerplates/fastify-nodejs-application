@@ -1,8 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from 'typeorm';
+import {
+  Entity, PrimaryGeneratedColumn, Column, BaseEntity,
+} from 'typeorm';
 import { IsNotEmpty, IsEmail } from 'class-validator';
 
 @Entity()
-export default class User extends BaseEntity {
+class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   id = null;
 
@@ -18,3 +20,5 @@ export default class User extends BaseEntity {
   @IsNotEmpty()
   passwordDigest = '';
 }
+
+export default User;
