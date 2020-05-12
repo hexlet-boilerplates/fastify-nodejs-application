@@ -44,20 +44,22 @@ const setUpViews = (app) => {
     templates: path.join(__dirname, '..', 'server', 'views'),
   });
 
-  app.decorateReply('render', function(path, locals) {
-    this.view(path, { ...locals, reply: this });
+  app.decorateReply('render', function render(viewPath, locals) {
+    this.view(viewPath, { ...locals, reply: this });
   });
 };
 
 const setUpStaticAssets = (app) => {
-  const domain = isDevelopment ? 'http://localhost:8080' : '';
+  const pathPublic = isDevelopment
+    ? path.join(__dirname, '..', 'dist', 'public')
+    : path.join(__dirname, '..', 'public');
   app.register(fastifyStatic, {
-    root: path.join(__dirname, '..', 'dist', 'public'),
+    root: pathPublic,
     prefix: '/assets/',
   });
 };
 
-const setupLocalization = (app) => {
+const setupLocalization = () => {
   i18next
     .init({
       lng: 'ru',
@@ -73,7 +75,7 @@ const addHooks = (app) => {
   app.decorateRequest('currentUser', null);
   app.decorateRequest('signedIn', false);
 
-  app.addHook('preHandler', async (req, _reply) => {
+  app.addHook('preHandler', async (req) => {
     const userId = req.session.get('userId');
     if (userId) {
       req.currentUser = await User.find(userId);
@@ -118,7 +120,7 @@ export default () => {
 
   registerPlugins(app);
 
-  setupLocalization(app);
+  setupLocalization();
   setUpViews(app);
   setUpStaticAssets(app);
   addRoutes(app);
