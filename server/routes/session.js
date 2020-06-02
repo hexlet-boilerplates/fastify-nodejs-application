@@ -1,7 +1,7 @@
 // @ts-check
 
 import i18next from 'i18next';
-import User from '../entity/User.js';
+import { User } from '../entity/index.js';
 import encrypt from '../lib/secure.js';
 
 export default (app) => {
@@ -14,6 +14,7 @@ export default (app) => {
     .post('/session', { name: 'session' }, async (req, reply) => {
       const signInForm = req.body.object;
       const user = await User.findOne({ where: { email: signInForm.email } });
+
       if (!user || (user.passwordDigest !== encrypt(signInForm.password))) {
         req.flash('error', i18next.t('flash.session.create.error'));
         return reply.render('session/new', { signInForm });

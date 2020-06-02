@@ -1,5 +1,6 @@
 setup:
 	npm install
+	npx sequelize db:migrate
 
 build:
 	npm run build

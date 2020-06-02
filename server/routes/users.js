@@ -1,37 +1,32 @@
 // @ts-check
 
 import i18next from 'i18next';
-import { validate } from 'class-validator';
-import _ from 'lodash';
-import encrypt from '../lib/secure.js';
-import User from '../entity/User.js';
+import { User } from '../entity/index.js';
 // import { buildFromObj, buildFromModel } from '../lib/formObjectBuilder';
 
 export default (app) => {
   app
     .get('/users', { name: 'users' }, async (req, reply) => {
-      const users = await app.orm.getRepository(User).find();
+      const users = await User.findAll();
       reply.render('users/index', { users });
       return reply;
     })
     .get('/users/new', { name: 'newUser' }, async (req, reply) => {
-    //     const params = buildFromModel(User.rawAttributes);
-      const user = new User();
+      // const params = buildFromModel(User.rawAttributes);
+      const user = User.build();
       reply.render('users/new', { user });
       return reply;
     })
     .post('/users', async (req, reply) => {
-      const user = User.create(req.body.user);
-      user.password = req.body.user.password;
-      user.passwordDigest = encrypt(user.password);
+      const user = User.build(req.body.user);
 
-      const errors = await validate(user);
-      if (!_.isEmpty(errors)) {
+      try {
+        await user.save();
+        req.flash('info', i18next.t('flash.users.create.success'));
+        return reply.redirect(app.reverse('root'));
+      } catch ({ errors }) {
         req.flash('error', i18next.t('flash.users.create.error'));
         return reply.render('users/new', { user, errors });
       }
-      await user.save();
-      req.flash('info', i18next.t('flash.users.create.success'));
-      return reply.redirect(app.reverse('root'));
     });
 };
