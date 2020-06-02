@@ -5,7 +5,7 @@ mixin formFor(entity = null)
     block
 
 mixin input(entity, propertyName, errors = [])
-  - error = errors.find((error) => error.property === propertyName)
+  - error = errors.find((error) => error.path === propertyName)
   .form-group(class=(errors[propertyName] && 'has-danger'))
     label= propertyName
     input(
@@ -14,7 +14,7 @@ mixin input(entity, propertyName, errors = [])
       value=_.get(entity, propertyName, '')
     )&attributes(attributes)
     if error
-      .form-control-feedback= Object.values(error.constraints).join('. ')
+      .form-control-feedback= _.groupBy(errors, 'path')[propertyName].map(({ message }) => message).join('. ')
 
 mixin submit(form = null)
   .form-group
