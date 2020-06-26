@@ -1,11 +1,10 @@
 // @ts-check
 
-import 'reflect-metadata';
 import path from 'path';
 import fastify from 'fastify';
 import fastifyStatic from 'fastify-static';
 import fastifySequelize from 'fastify-sequelize';
-import fastifyErrorPage from 'fastify-error-page';
+// import fastifyErrorPage from 'fastify-error-page';
 import pointOfView from 'point-of-view';
 import fastifyFormbody from 'fastify-formbody';
 import fastifySecureSession from 'fastify-secure-session';
@@ -86,7 +85,7 @@ const addHooks = (app) => {
 };
 
 const registerPlugins = (app) => {
-  app.register(fastifyErrorPage);
+  // app.register(fastifyErrorPage);
   app.register(fastifyReverseRoutes);
   app.register(fastifyFormbody);
   app.register(fastifySecureSession, {

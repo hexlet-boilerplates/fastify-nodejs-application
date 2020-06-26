@@ -2,7 +2,7 @@
 
 import encrypt from '../lib/secure.js';
 
-export default (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     'User',
     {
