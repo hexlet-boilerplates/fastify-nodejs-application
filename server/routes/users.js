@@ -2,7 +2,6 @@
 
 import i18next from 'i18next';
 import { User } from '../entity/index.js';
-// import { buildFromObj, buildFromModel } from '../lib/formObjectBuilder';
 
 export default (app) => {
   app
@@ -12,7 +11,6 @@ export default (app) => {
       return reply;
     })
     .get('/users/new', { name: 'newUser' }, async (req, reply) => {
-      // const params = buildFromModel(User.rawAttributes);
       const user = User.build();
       reply.render('users/new', { user });
       return reply;

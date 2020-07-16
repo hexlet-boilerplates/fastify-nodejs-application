@@ -4,7 +4,7 @@ import path from 'path';
 import fastify from 'fastify';
 import fastifyStatic from 'fastify-static';
 import fastifySequelize from 'fastify-sequelize';
-// import fastifyErrorPage from 'fastify-error-page';
+import fastifyErrorPage from 'fastify-error-page';
 import pointOfView from 'point-of-view';
 import fastifyFormbody from 'fastify-formbody';
 import fastifySecureSession from 'fastify-secure-session';
@@ -76,7 +76,7 @@ const addHooks = (app) => {
   app.addHook('preHandler', async (req) => {
     const userId = req.session.get('userId');
     if (userId) {
-      req.currentUser = await User.findOne({ where: { id: userId } });
+      req.currentUser = await User.findByPk(userId);
       req.signedIn = true;
     } else {
       req.currentUser = Guest.build();
@@ -85,7 +85,7 @@ const addHooks = (app) => {
 };
 
 const registerPlugins = (app) => {
-  // app.register(fastifyErrorPage);
+  app.register(fastifyErrorPage);
   app.register(fastifyReverseRoutes);
   app.register(fastifyFormbody);
   app.register(fastifySecureSession, {
