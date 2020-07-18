@@ -16,3 +16,6 @@ env:
 rules:
   no-console: 0
   import/extensions: 0
+  new-cap:
+    - error
+    - properties: false

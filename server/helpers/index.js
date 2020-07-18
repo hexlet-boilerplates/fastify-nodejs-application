@@ -19,4 +19,8 @@ export default (app) => ({
         throw new Error(`Unknown type: '${type}'`);
     }
   },
+  formatDate(str) {
+    const date = new Date(str);
+    return date.toLocaleString();
+  },
 });

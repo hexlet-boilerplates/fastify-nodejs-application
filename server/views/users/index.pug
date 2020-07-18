@@ -4,12 +4,12 @@ block content
   table.table.table-striped
     thead
       tr
-        th= t('users.id')
-        th= t('users.email')
-        th= t('users.createdAt')
+        th= t('views.users.id')
+        th= t('views.users.email')
+        th= t('views.users.createdAt')
     tbody
       each user in users
         tr
           td= user.id
           td= user.email
-          td= user.createdAt
+          td= formatDate(user.createdAt)
