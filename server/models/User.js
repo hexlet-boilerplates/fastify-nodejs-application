@@ -24,18 +24,7 @@ export default class User extends unique(Model) {
     };
   }
 
-  hashPassword() {
-    this.passwordDigest = encrypt(this.password);
-    this.$omit('password');
-  }
-
-  async $beforeInsert(queryContext) {
-    await super.$beforeInsert(queryContext);
-    this.hashPassword();
-  }
-
-  async $beforeUpdate(opt, queryContext) {
-    await super.$beforeUpdate(opt, queryContext);
-    this.hashPassword();
+  set password(value) {
+    this.passwordDigest = encrypt(value);
   }
 }
