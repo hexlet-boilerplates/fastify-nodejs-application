@@ -1,9 +1,13 @@
 // @ts-check
 
-import { Model, ValidationError } from 'objection';
+import { Model } from 'objection';
+import objectionUnique from 'objection-unique';
+
 import encrypt from '../lib/secure.js';
 
-export default class User extends Model {
+const unique = objectionUnique({ fields: ['email'] });
+
+export default class User extends unique(Model) {
   static get tableName() {
     return 'users';
   }
@@ -20,37 +24,18 @@ export default class User extends Model {
     };
   }
 
-  async hashPassword() {
+  hashPassword() {
     this.passwordDigest = encrypt(this.password);
     this.$omit('password');
   }
 
-  async $beforeSave(isInserting = false) {
-    const user = await this.constructor.query().findOne({ email: this.email });
-    if (user) {
-      if (isInserting || user.id !== this.id) {
-        throw new ValidationError({
-          type: 'ModelValidation',
-          data: {
-            email: [
-              {
-                message: 'must be unique',
-              },
-            ],
-          },
-        });
-      }
-    }
-    await this.hashPassword();
-  }
-
   async $beforeInsert(queryContext) {
     await super.$beforeInsert(queryContext);
-    await this.$beforeSave(true);
+    this.hashPassword();
   }
 
   async $beforeUpdate(opt, queryContext) {
     await super.$beforeUpdate(opt, queryContext);
-    await this.$beforeSave();
+    this.hashPassword();
   }
 }

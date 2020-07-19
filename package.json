@@ -37,6 +37,7 @@
       "knex": "^0.21.2",
       "lodash": "^4.17.19",
       "objection": "^2.2.1",
+      "objection-unique": "^1.2.1",
       "point-of-view": "^4.2.0",
       "pug": "^3.0.0",
       "sqlite3": "^5.0.0",
