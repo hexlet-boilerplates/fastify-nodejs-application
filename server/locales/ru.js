@@ -34,6 +34,9 @@ module.exports = {
         },
       },
       users: {
+        id: 'ID',
+        email: 'Email',
+        createdAt: 'Дата создания',
         new: {
           submit: 'Сохранить',
           signUp: 'Регистрация',

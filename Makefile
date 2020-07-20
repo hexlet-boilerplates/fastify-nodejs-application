@@ -1,6 +1,6 @@
 setup:
 	npm install
-	npx sequelize db:migrate
+	npx knex migrate:latest
 
 build:
 	npm run build
