@@ -3,7 +3,7 @@ setup:
 	npx knex migrate:latest
 
 build:
-	npm run build
+	npm build
 
 prepare:
 	touch .env
@@ -15,10 +15,10 @@ start-backend:
 	npx nodemon --exec npx babel-node server/bin/server.js
 
 start-frontend:
-	npx webpack-dev-server
+	npx webpack serve
 
 lint:
 	npx eslint .
 
 test:
-	npm run test
+	npm test -s

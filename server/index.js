@@ -14,7 +14,7 @@ import fastifyObjectionjs from 'fastify-objectionjs';
 import Pug from 'pug';
 import i18next from 'i18next';
 import ru from './locales/ru.js';
-import webpackConfig from '../webpack.config.js';
+import webpackConfig from '../webpack.config.babel.js';
 
 import addRoutes from './routes/index.js';
 import getHelpers from './helpers/index.js';
@@ -84,7 +84,7 @@ const addHooks = (app) => {
 
 const registerPlugins = (app) => {
   app.register(fastifyErrorPage);
-  app.register(fastifyReverseRoutes);
+  app.register(fastifyReverseRoutes.plugin);
   app.register(fastifyFormbody);
   app.register(fastifySecureSession, {
     secret: 'a secret with minimum length of 32 characters',
