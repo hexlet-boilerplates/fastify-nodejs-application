@@ -3,7 +3,7 @@ setup:
 	npx knex migrate:latest
 
 build:
-	npm build
+	npm run build
 
 prepare:
 	touch .env

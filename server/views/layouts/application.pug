@@ -5,7 +5,7 @@ html(lang="en").h-100
   head
     title Hexlet Fastify Boilerplate
     script(src=assetPath('main.js'))
-    link(href=assetPath('main.css'))
+    link(href=assetPath('main.css') rel="stylesheet")
   body.h-100.d-flex.flex-column
     nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-3
       a.navbar-brand(href=route('root'))= t('appName')
@@ -37,4 +37,3 @@ html(lang="en").h-100
     footer.footer.mt-100
       .container.my-5.pt-4.border-top
         a(target="_blank" href="https://ru.hexlet.io") Hexlet
-

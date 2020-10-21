@@ -12,11 +12,13 @@ module.exports = {
     connection: {
       filename: './database.sqlite',
     },
+    useNullAsDefault: true,
     migrations,
   },
   test: {
     client: 'sqlite3',
     connection: ':memory:',
+    useNullAsDefault: true,
     migrations,
   },
   production: {
@@ -24,6 +26,7 @@ module.exports = {
     connection: {
       filename: './database.sqlite',
     },
+    useNullAsDefault: true,
     migrations,
   },
 };
