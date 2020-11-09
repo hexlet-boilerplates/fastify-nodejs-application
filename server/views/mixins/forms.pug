@@ -1,20 +1,21 @@
-- const getInputName = (entity, property) => `${entity.constructor.name.toLowerCase()}[${property}]`
+- const getInputName = (entity, property) => `data[${property}]`
 
 mixin formFor(entity = null)
   form&attributes(attributes)
     block
 
 mixin input(entity, propertyName, errors = [])
-  - error = _.get(errors, propertyName)
+  - errors = Array(_.get(errors, propertyName, [])).flat()
+  - classLine = 'form-control' + (_.isEmpty(errors) ? '' : ' is-invalid')
   .form-group(class=(errors[propertyName] && 'has-danger'))
     label= propertyName
     input(
       name=getInputName(entity, propertyName)
-      class='form-control'
+      class=classLine
       value=_.get(entity, propertyName, '')
     )&attributes(attributes)
-    if error
-      .form-control-feedback= error.map(({ message }) => message).join('. ')
+    if !_.isEmpty(errors)
+      .invalid-feedback= errors.map(({ message }) => message).join('. ')
 
 mixin submit(form = null)
   .form-group

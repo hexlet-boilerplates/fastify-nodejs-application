@@ -1,7 +1,7 @@
 // @ts-check
 
+import fp from 'fastify-passport';
 import i18next from 'i18next';
-import encrypt from '../lib/secure.js';
 
 export default (app) => {
   app
@@ -9,23 +9,23 @@ export default (app) => {
       const signInForm = {};
       reply.render('session/new', { signInForm });
     })
-    .post('/session', { name: 'session' }, async (req, reply) => {
-      const signInForm = req.body.object;
-      const user = await app.objection.models.user.query().findOne({ email: signInForm.email });
-
-      if (!user || (user.passwordDigest !== encrypt(signInForm.password))) {
-        req.flash('error', i18next.t('flash.session.create.error'));
-        reply.render('session/new', { signInForm });
-        return reply;
+    .post('/session', { name: 'session' }, fp.authenticate('form', async (req, reply, err, user) => {
+      if (err) {
+        return app.httpErrors.internalServerError(err);
       }
-
-      req.session.set('userId', user.id);
-      req.flash('info', i18next.t('flash.session.create.success'));
-      reply.redirect(app.reverse('root'));
-      return reply;
-    })
+      if (!user) {
+        const signInForm = req.body.data;
+        const errors = {
+          email: { message: i18next.t('flash.session.create.error') },
+        };
+        return reply.render('session/new', { signInForm, errors });
+      }
+      await req.logIn(user);
+      req.flash('success', i18next.t('flash.session.create.success'));
+      return reply.redirect(app.reverse('root'));
+    }))
     .delete('/session', (req, reply) => {
-      req.session.set('userId', null);
+      req.logOut();
       req.flash('info', i18next.t('flash.session.delete.success'));
       reply.redirect(app.reverse('root'));
     });
