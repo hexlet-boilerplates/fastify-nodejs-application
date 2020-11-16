@@ -19,3 +19,9 @@ rules:
   new-cap:
     - error
     - properties: false
+  no-param-reassign:
+    - error
+    - props: true
+      ignorePropertyModificationsFor:
+      - req
+      - reply
