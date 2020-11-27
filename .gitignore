@@ -6,3 +6,4 @@ dist/
 tmp/
 temp/
 database.sqlite
+.env
