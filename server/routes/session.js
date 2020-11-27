@@ -1,6 +1,5 @@
 // @ts-check
 
-import fp from 'fastify-passport';
 import i18next from 'i18next';
 
 export default (app) => {
@@ -9,7 +8,7 @@ export default (app) => {
       const signInForm = {};
       reply.render('session/new', { signInForm });
     })
-    .post('/session', { name: 'session' }, fp.authenticate('form', async (req, reply, err, user) => {
+    .post('/session', { name: 'session' }, app.fp.authenticate('form', async (req, reply, err, user) => {
       if (err) {
         return app.httpErrors.internalServerError(err);
       }

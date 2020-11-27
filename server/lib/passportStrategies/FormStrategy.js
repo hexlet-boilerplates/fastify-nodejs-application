@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { Strategy } from 'fastify-passport';
 
 export default class FormStrategy extends Strategy {
@@ -10,12 +11,15 @@ export default class FormStrategy extends Strategy {
     if (request.isAuthenticated()) {
       return this.pass();
     }
-    const { data } = request.body;
+
+    const email = _.get(request, 'body.data.email', null);
+    const password = _.get(request, 'body.data.password', null);
     const { models } = this.app.objection;
-    const user = await models.user.query().findOne({ email: data.email });
-    if (user && user.verifyPassword(data.password)) {
+    const user = await models.user.query().findOne({ email });
+    if (user && user.verifyPassword(password)) {
       return this.success(user);
     }
+
     return this.fail();
   }
 }
