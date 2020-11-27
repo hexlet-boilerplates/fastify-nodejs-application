@@ -12,6 +12,9 @@
       "start": "NODE_ENV=production node dist/server/bin/server.js",
       "develop": "npx nodemon --exec DEBUG=application:* npx babel-node server/bin/server.js"
    },
+   "engines": {
+     "node": "14.x"
+   },
    "author": "Stanislav Dzisiak",
    "license": "ISC",
    "repository": {
