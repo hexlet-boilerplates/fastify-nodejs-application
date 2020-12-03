@@ -15,6 +15,11 @@
    "engines": {
       "node": "14.x"
    },
+   "jest": {
+     "modulePathIgnorePatterns": [
+       "<rootDir>/__tests__/helpers/"
+     ]
+   },
    "author": "Stanislav Dzisiak",
    "license": "ISC",
    "repository": {

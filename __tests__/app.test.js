@@ -3,25 +3,25 @@
 import {
   describe, beforeAll, it, expect,
 } from '@jest/globals';
-import app from '../server/index.js';
+import getApp from '../server/index.js';
 
 describe('requests', () => {
-  let server;
+  let app;
 
-  beforeAll(() => {
-    server = app();
+  beforeAll(async () => {
+    app = await getApp();
   });
 
   it('GET 200', async () => {
-    const res = await server.inject({
+    const res = await app.inject({
       method: 'GET',
-      url: '/',
+      url: app.reverse('root'),
     });
     expect(res.statusCode).toBe(200);
   });
 
   it('GET 404', async () => {
-    const res = await server.inject({
+    const res = await app.inject({
       method: 'GET',
       url: '/wrong-path',
     });
@@ -29,6 +29,6 @@ describe('requests', () => {
   });
 
   afterAll(() => {
-    server.close();
+    app.close();
   });
 });
