@@ -1,21 +1,26 @@
-- const getInputName = (entity, property) => `data[${property}]`
+- const getInputName = (property) => `data[${property}]`
+- const getInputId = (property) => `data_${property}`
 
 mixin formFor(entity = null)
   form&attributes(attributes)
     block
 
-mixin input(entity, propertyName, errors = [])
-  - errors = Array(_.get(errors, propertyName, [])).flat()
+mixin input(entity, propertyName, errors = {})
+  - propertyErrors = _.get(errors, propertyName)
   - classLine = 'form-control' + (_.isEmpty(errors) ? '' : ' is-invalid')
+  - inputId = getInputId(propertyName)
   .form-group(class=(errors[propertyName] && 'has-danger'))
-    label= propertyName
+    label(
+      for= inputId
+    )= propertyName
     input(
-      name=getInputName(entity, propertyName)
+      id= inputId
+      name=getInputName(propertyName)
       class=classLine
       value=_.get(entity, propertyName, '')
     )&attributes(attributes)
-    if !_.isEmpty(errors)
-      .invalid-feedback= errors.map(({ message }) => message).join('. ')
+    if !_.isEmpty(propertyErrors)
+      .invalid-feedback= propertyErrors.map(({ message }) => message).join('. ')
 
 mixin submit(form = null)
   .form-group

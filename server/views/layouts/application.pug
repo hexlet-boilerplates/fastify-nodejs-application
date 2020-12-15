@@ -1,12 +1,13 @@
 include ../mixins/forms.pug
 
 doctype html
-html(lang="en").h-100
+html(lang="en")
   head
     title Hexlet Fastify Boilerplate
     script(src=assetPath('main.js'))
     link(href=assetPath('main.css') rel="stylesheet")
-  body.h-100.d-flex.flex-column
+    meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+  body.d-flex.flex-column.min-vh-100
     nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-3
       a.navbar-brand(href=route('root'))= t('appName')
       button.navbar-toggler(data-toggle="collapse" data-target="#navbarSupportedContent")
@@ -24,7 +25,7 @@ html(lang="en").h-100
               a.nav-link(href=route('newSession'))= t('layouts.application.signIn')
             li.nav-item
               a.nav-link(href=route('newUser'))= t('layouts.application.signUp')
-    .container.h-100
+    .container.wrapper.flex-grow-1
 
       each messages, type in reply.flash() || []
         each message in messages
@@ -34,6 +35,6 @@ html(lang="en").h-100
         block header
       block content
 
-    footer.footer.mt-100
+    footer
       .container.my-5.pt-4.border-top
         a(target="_blank" href="https://ru.hexlet.io") Hexlet
