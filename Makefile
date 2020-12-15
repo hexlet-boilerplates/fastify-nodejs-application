@@ -1,4 +1,4 @@
-setup: install db-migrate
+setup: prepare install db-migrate
 
 install:
 	npm install
@@ -10,7 +10,7 @@ build:
 	npm run build
 
 prepare:
-	touch .env
+	cp -n .env.example .env || true
 
 start:
 	heroku local -f Procfile.dev
