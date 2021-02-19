@@ -10,9 +10,9 @@ html(lang="en")
   body.d-flex.flex-column.min-vh-100
     nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-3
       a.navbar-brand(href=route('root'))= t('appName')
-      button.navbar-toggler(data-toggle="collapse" data-target="#navbarSupportedContent")
+      button.navbar-toggler(data-toggle="collapse" data-target="#navbarToggleExternalContent")
         span.navbar-toggler-icon
-      .collapse.navbar-collapse
+      .collapse.navbar-collapse(id="navbarToggleExternalContent")
         ul.navbar-nav.mr-auto
           li.nav-item
             a.nav-link(href=route('users'))= t('layouts.application.users')
