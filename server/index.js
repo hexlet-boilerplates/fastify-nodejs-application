@@ -11,13 +11,14 @@ import fastifySecureSession from 'fastify-secure-session';
 import fastifyPassport from 'fastify-passport';
 import fastifySensible from 'fastify-sensible';
 // import fastifyFlash from 'fastify-flash';
-import fastifyReverseRoutes from 'fastify-reverse-routes';
+import { plugin as fastifyReverseRoutes } from 'fastify-reverse-routes';
 import fastifyMethodOverride from 'fastify-method-override';
 import fastifyObjectionjs from 'fastify-objectionjs';
 import qs from 'qs';
 import Pug from 'pug';
 import i18next from 'i18next';
 import ru from './locales/ru.js';
+// @ts-ignore
 import webpackConfig from '../webpack.config.babel.js';
 
 import addRoutes from './routes/index.js';
@@ -86,7 +87,7 @@ const addHooks = (app) => {
 const registerPlugins = (app) => {
   app.register(fastifySensible);
   app.register(fastifyErrorPage);
-  app.register(fastifyReverseRoutes.plugin);
+  app.register(fastifyReverseRoutes);
   app.register(fastifyFormbody, { parser: qs.parse });
   app.register(fastifySecureSession, {
     secret: process.env.SESSION_KEY,
@@ -109,6 +110,7 @@ const registerPlugins = (app) => {
       failureRedirect: app.reverse('root'),
       failureFlash: i18next.t('flash.authError'),
     },
+  // @ts-ignore
   )(...args));
 
   app.register(fastifyMethodOverride);

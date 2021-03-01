@@ -1,3 +1,5 @@
+// @ts-check
+
 module.exports = {
   translation: {
     appName: 'Fastify Шаблон',
