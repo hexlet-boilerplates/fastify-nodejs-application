@@ -54,7 +54,7 @@
       "objection-unique": "^1.2.1",
       "pino-pretty": "^4.5.0",
       "point-of-view": "^4.13.0",
-      "pug": "^3.0.0",
+      "pug": "^3.0.1",
       "qs": "^6.9.6",
       "sqlite3": "^5.0.2",
       "webpack": "^5.23.0"
