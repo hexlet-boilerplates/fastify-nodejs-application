@@ -9,7 +9,7 @@ mixin input(entity, propertyName, errors = {})
   - propertyErrors = _.get(errors, propertyName)
   - classLine = 'form-control' + (_.isEmpty(errors) ? '' : ' is-invalid')
   - inputId = getInputId(propertyName)
-  .form-group(class=(errors[propertyName] && 'has-danger'))
+  .mb-3(class=(errors[propertyName] && 'has-danger'))
     label(
       for= inputId
     )= propertyName
@@ -23,8 +23,7 @@ mixin input(entity, propertyName, errors = {})
       .invalid-feedback= propertyErrors.map(({ message }) => message).join('. ')
 
 mixin submit(form = null)
-  .form-group
-    input(class='btn btn-primary' type='submit')&attributes(attributes)
+  input(class='btn btn-primary' type='submit')&attributes(attributes)
 
 mixin buttonTo(action, method)
   form(action=action, method="post")
