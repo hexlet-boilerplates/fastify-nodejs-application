@@ -44,7 +44,7 @@
       "fastify-reverse-routes": "^3.0.0",
       "fastify-secure-session": "^2.3.1",
       "fastify-sensible": "^3.1.1",
-      "fastify-static": "^4.2.2",
+      "fastify-static": "^4.2.4",
       "i18next": "^20.3.1",
       "jquery": "^3.6.0",
       "knex": "^0.21.19",
