@@ -9,7 +9,6 @@ describe('test session', () => {
   let knex;
   let testData;
 
-  // TODO: использовать для фикстур https://github.com/viglucci/simple-knex-fixtures
   beforeAll(async () => {
     app = fastify();
     await init(app);
