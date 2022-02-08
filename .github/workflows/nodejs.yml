@@ -16,11 +16,6 @@ jobs:
         with:
           node-version: '17.x'
           cache: 'npm'
-      - name: npm install, build
-        run: |
-          make setup
-          make build
-      - name: Run linter
-        run: make lint
-      - name: Run tests
-        run: make test
+      - run: make setup
+      - run: make lint
+      - run: make test
