@@ -50,7 +50,7 @@
       "knex": "^0.21.19",
       "lodash": "^4.17.21",
       "mini-css-extract-plugin": "^1.6.0",
-      "objection": "^2.2.15",
+      "objection": "^2.2.16",
       "objection-unique": "^1.2.2",
       "pino-pretty": "^5.0.2",
       "point-of-view": "^4.14.0",
