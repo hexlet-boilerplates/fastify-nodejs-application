@@ -2,6 +2,9 @@
 
 root: true
 
+parserOptions:
+  ecmaVersion: latest
+
 extends:
   - 'airbnb-base'
   - 'plugin:jest/recommended'
@@ -25,3 +28,4 @@ rules:
       ignorePropertyModificationsFor:
       - req
       - reply
+  no-underscore-dangle: [2, { "allow": ["__filename", "__dirname"] }]
