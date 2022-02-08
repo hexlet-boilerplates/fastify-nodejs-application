@@ -1,6 +1,7 @@
 // @ts-check
 
-import getApp from '../server/index.js';
+import fastify from 'fastify';
+import init from '../server/plugin.js';
 import { getTestData, prepareData } from './helpers/index.js';
 
 describe('test session', () => {
@@ -8,8 +9,10 @@ describe('test session', () => {
   let knex;
   let testData;
 
+  // TODO: использовать для фикстур https://github.com/viglucci/simple-knex-fixtures
   beforeAll(async () => {
-    app = await getApp();
+    app = fastify();
+    await init(app);
     knex = app.objection.knex;
     await knex.migrate.latest();
     await prepareData(app);

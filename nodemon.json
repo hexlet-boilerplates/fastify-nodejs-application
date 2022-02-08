@@ -1,4 +1,4 @@
 {
   "verbose": true,
-  "watch": ["server", "webpack.config.babel.js", "locales"]
+  "watch": ["server", "webpack.config.js", "locales"]
 }

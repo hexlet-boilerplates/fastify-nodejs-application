@@ -1,6 +1,6 @@
 // @ts-check
 
-module.exports = {
+export default {
   translation: {
     appName: 'Fastify Шаблон',
     flash: {

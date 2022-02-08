@@ -1,8 +1,7 @@
 // @ts-check
 
-import dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
 import path from 'path';
-import fastify from 'fastify';
 import fastifyStatic from 'fastify-static';
 import fastifyErrorPage from 'fastify-error-page';
 import pointOfView from 'point-of-view';
@@ -19,23 +18,19 @@ import Pug from 'pug';
 import i18next from 'i18next';
 import ru from './locales/ru.js';
 // @ts-ignore
-import webpackConfig from '../webpack.config.babel.js';
 
 import addRoutes from './routes/index.js';
 import getHelpers from './helpers/index.js';
-import knexConfig from '../knexfile.js';
+import * as knexConfig from '../knexfile.js';
 import models from './models/index.js';
 import FormStrategy from './lib/passportStrategies/FormStrategy.js';
 
-dotenv.config();
+const __dirname = fileURLToPath(path.dirname(import.meta.url));
+
 const mode = process.env.NODE_ENV || 'development';
-const isProduction = mode === 'production';
 const isDevelopment = mode === 'development';
 
 const setUpViews = (app) => {
-  const { devServer } = webpackConfig;
-  const devHost = `http://${devServer.host}:${devServer.port}`;
-  const domain = isDevelopment ? devHost : '';
   const helpers = getHelpers(app);
   app.register(pointOfView, {
     engine: {
@@ -44,7 +39,7 @@ const setUpViews = (app) => {
     includeViewExtension: true,
     defaultContext: {
       ...helpers,
-      assetPath: (filename) => `${domain}/assets/${filename}`,
+      assetPath: (filename) => `/assets/${filename}`,
     },
     templates: path.join(__dirname, '..', 'server', 'views'),
   });
@@ -55,9 +50,7 @@ const setUpViews = (app) => {
 };
 
 const setUpStaticAssets = (app) => {
-  const pathPublic = isProduction
-    ? path.join(__dirname, '..', 'public')
-    : path.join(__dirname, '..', 'dist', 'public');
+  const pathPublic = path.join(__dirname, '..', 'dist');
   app.register(fastifyStatic, {
     root: pathPublic,
     prefix: '/assets/',
@@ -90,7 +83,7 @@ const registerPlugins = (app) => {
   app.register(fastifyReverseRoutes);
   app.register(fastifyFormbody, { parser: qs.parse });
   app.register(fastifySecureSession, {
-    secret: process.env.SESSION_KEY,
+    key: Buffer.from(process.env.SESSION_KEY, 'hex'),
     cookie: {
       path: '/',
     },
@@ -120,13 +113,7 @@ const registerPlugins = (app) => {
   });
 };
 
-export default () => {
-  const app = fastify({
-    logger: {
-      prettyPrint: isDevelopment,
-    },
-  });
-
+export default (app, options) => {
   registerPlugins(app);
 
   setupLocalization();
