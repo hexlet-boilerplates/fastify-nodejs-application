@@ -28,5 +28,4 @@ lint:
 	npx eslint .
 
 test:
-	SESSION_KEY=4fe91796c30bd989d95b62dc46c7c3ba0b6aa2df2187400586a4121c54c53b85 \
 	npm test -s
