@@ -9,7 +9,7 @@
    "scripts": {
       "test": "jest",
       "build-frontend": "webpack",
-      "start": "PORT=5555 fastify start server/plugin.js"
+      "start": "fastify start server/plugin.js -l info -P"
    },
    "jest": {
       "modulePathIgnorePatterns": [
