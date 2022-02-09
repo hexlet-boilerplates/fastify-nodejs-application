@@ -58,8 +58,8 @@ const setUpStaticAssets = (app) => {
   });
 };
 
-const setupLocalization = () => {
-  i18next
+const setupLocalization = async () => {
+  await i18next
     .init({
       lng: 'ru',
       fallbackLng: 'en',
@@ -115,10 +115,10 @@ const registerPlugins = (app) => {
 };
 
 // eslint-disable-next-line no-unused-vars
-export default (app, options) => {
+export default async (app, options) => {
   registerPlugins(app);
 
-  setupLocalization();
+  await setupLocalization();
   setUpViews(app);
   setUpStaticAssets(app);
   addRoutes(app);

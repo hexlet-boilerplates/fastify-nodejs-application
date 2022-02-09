@@ -70,7 +70,7 @@ describe('test users CRUD', () => {
     await knex.migrate.rollback();
   });
 
-  afterAll(() => {
-    app.close();
+  afterAll(async () => {
+    await app.close();
   });
 });
