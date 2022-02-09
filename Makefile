@@ -18,8 +18,7 @@ start:
 	heroku local -f Procfile.dev
 
 start-backend:
-	# npx nodemon --exec npx babel-node server/bin/server.js
-	npm start -- --verbose-watch -l info -P
+	npm start -- --watch --verbose-watch -l info -P
 
 start-frontend:
 	npx webpack --watch --progress

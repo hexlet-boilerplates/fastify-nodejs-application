@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import fastifyStatic from 'fastify-static';
 import fastifyErrorPage from 'fastify-error-page';
+
 import pointOfView from 'point-of-view';
 import fastifyFormbody from 'fastify-formbody';
 import fastifySecureSession from 'fastify-secure-session';
@@ -62,7 +63,7 @@ const setupLocalization = () => {
     .init({
       lng: 'ru',
       fallbackLng: 'en',
-      debug: isDevelopment,
+      // debug: isDevelopment,
       resources: {
         ru,
       },
