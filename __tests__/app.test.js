@@ -11,7 +11,7 @@ describe('requests', () => {
   let app;
 
   beforeAll(async () => {
-    app = fastify();
+    app = fastify({ logger: { prettyPrint: true } });
     await init(app);
   });
 
