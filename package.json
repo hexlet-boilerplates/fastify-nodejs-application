@@ -7,7 +7,7 @@
       "node": "17"
    },
    "scripts": {
-      "test": "jest",
+      "test": "jest --verbose",
       "build-frontend": "webpack",
       "start": "fastify start server/plugin.js -l info -P"
    },

@@ -53,7 +53,7 @@ describe('test session', () => {
   });
 
   afterAll(async () => {
-    await knex.migrate.rollback();
+    // await knex.migrate.rollback();
     await app.close();
   });
 });
