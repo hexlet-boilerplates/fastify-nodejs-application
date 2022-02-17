@@ -4,7 +4,7 @@
    "type": "module",
    "description": "fastify-nodejs-application",
    "engines": {
-      "node": "17"
+      "node": "~16"
    },
    "scripts": {
       "test": "jest --verbose",
