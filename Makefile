@@ -28,3 +28,5 @@ lint:
 
 test:
 	npm test -s
+
+check: test lint

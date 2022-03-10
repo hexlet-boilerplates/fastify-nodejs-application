@@ -11,6 +11,7 @@ RUN npm ci
 
 COPY . .
 
+RUN make check
 ENV NODE_ENV=production
 RUN make build
 
