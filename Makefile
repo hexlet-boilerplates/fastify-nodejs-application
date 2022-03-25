@@ -1,5 +1,3 @@
-# export NODE_OPTIONS=--openssl-legacy-provider
-
 setup: prepare install db-migrate
 
 install:
@@ -9,7 +7,7 @@ db-migrate:
 	npx knex migrate:latest
 
 build:
-	npm run build-frontend
+	npm run build
 
 prepare:
 	cp -n .env.example .env || true
@@ -18,7 +16,7 @@ start:
 	heroku local -f Procfile.dev
 
 start-backend:
-	npm start -- --watch --verbose-watch
+	npm start -- --watch --verbose-watch --ignore-watch='node_modules .git .sqlite'
 
 start-frontend:
 	npx webpack --watch --progress
