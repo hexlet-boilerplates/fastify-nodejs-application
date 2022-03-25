@@ -1,4 +1,0 @@
-{
-  "verbose": true,
-  "watch": ["server", "webpack.config.js", "locales"]
-}
