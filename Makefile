@@ -7,7 +7,7 @@ db-migrate:
 	npx knex migrate:latest
 
 build:
-	npm run build-frontend
+	npm run build
 
 prepare:
 	cp -n .env.example .env || true

@@ -1,6 +1,10 @@
-FROM node:16.14-slim
+FROM node:16-slim
 
-RUN apt-get update && apt-get install -yq make
+RUN apt-get update && apt-get install -yq \
+  build-essential \
+  python3
+
+RUN ln -s /usr/bin/python3 /usr/bin/python
 
 WORKDIR /app
 
