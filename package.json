@@ -10,7 +10,7 @@
       "prebuild": "rm -rf dist",
       "test": "jest --verbose --runInBand",
       "build": "webpack",
-      "start": "fastify start server/plugin.js -l info -P"
+      "start": "fastify start server/plugin.js -l debug -P"
    },
    "jest": {
       "modulePathIgnorePatterns": [

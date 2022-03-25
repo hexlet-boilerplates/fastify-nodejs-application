@@ -1,6 +1,6 @@
 // @ts-check
 
-import User from './User.js';
+import User from './User.cjs';
 
 export default [
   User,

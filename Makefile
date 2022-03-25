@@ -1,5 +1,3 @@
-# export NODE_OPTIONS=--openssl-legacy-provider
-
 setup: prepare install db-migrate
 
 install:
