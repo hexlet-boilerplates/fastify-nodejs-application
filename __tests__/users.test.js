@@ -1,11 +1,9 @@
 // @ts-check
 
 import _ from 'lodash';
-import fastify from 'fastify';
 
-import init from '../server/plugin.js';
 import encrypt from '../server/lib/secure.cjs';
-import { getTestData, prepareData } from './helpers/index.js';
+import { getTestData, prepareData, buildApp } from './helpers/index.js';
 
 describe('test users CRUD', () => {
   let app;
@@ -14,8 +12,7 @@ describe('test users CRUD', () => {
   const testData = getTestData();
 
   beforeAll(async () => {
-    app = fastify({ logger: { prettyPrint: true } });
-    await init(app);
+    app = await buildApp();
     knex = app.objection.knex;
     models = app.objection.models;
 
