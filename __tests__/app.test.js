@@ -4,13 +4,15 @@ import {
   describe, beforeAll, it, expect,
 } from '@jest/globals';
 
-import { buildApp } from './helpers/index.js';
+import fastify from 'fastify';
+import init from '../server/plugin.js';
 
 describe('requests', () => {
   let app;
 
   beforeAll(async () => {
-    app = await buildApp();
+    app = fastify({ logger: { prettyPrint: true } });
+    await init(app);
   });
 
   it('GET 200', async () => {

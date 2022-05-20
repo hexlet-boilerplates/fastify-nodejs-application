@@ -3,9 +3,8 @@
 import { URL } from 'url';
 import fs from 'fs';
 import path from 'path';
-import { build } from 'fastify-cli/helper';
 
-// TODO: switch to https://github.com/viglucci/simple-knex-fixtures
+// TODO: использовать для фикстур https://github.com/viglucci/simple-knex-fixtures
 
 const getFixturePath = (filename) => path.join('..', '..', '__fixtures__', filename);
 const readFixture = (filename) => fs.readFileSync(new URL(getFixturePath(filename), import.meta.url), 'utf-8').trim();
@@ -18,9 +17,4 @@ export const prepareData = async (app) => {
 
   // получаем данные из фикстур и заполняем БД
   await knex('users').insert(getFixtureData('users.json'));
-};
-
-export const buildApp = (params = {}) => {
-  const argv = ['server/plugin.js'];
-  return build(argv, params);
 };
