@@ -2,14 +2,13 @@
 
 import { fileURLToPath } from 'url';
 import path from 'path';
-import fastifyStatic from 'fastify-static';
-import fastifyErrorPage from 'fastify-error-page';
+import fastifyStatic from '@fastify/static';
 
 import pointOfView from 'point-of-view';
-import fastifyFormbody from 'fastify-formbody';
-import fastifySecureSession from 'fastify-secure-session';
-import fastifyPassport from 'fastify-passport';
-import fastifySensible from 'fastify-sensible';
+import fastifyFormbody from '@fastify/formbody';
+import fastifySecureSession from '@fastify/secure-session';
+import fastifyPassport from '@fastify/passport';
+import fastifySensible from '@fastify/sensible';
 import { plugin as fastifyReverseRoutes } from 'fastify-reverse-routes';
 import fastifyMethodOverride from 'fastify-method-override';
 import fastifyObjectionjs from 'fastify-objectionjs';
@@ -79,7 +78,6 @@ const addHooks = (app) => {
 
 const registerPlugins = (app) => {
   app.register(fastifySensible);
-  app.register(fastifyErrorPage);
   app.register(fastifyReverseRoutes);
   app.register(fastifyFormbody, { parser: qs.parse });
   app.register(fastifySecureSession, {
