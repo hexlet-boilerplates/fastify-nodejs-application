@@ -17,6 +17,7 @@ import qs from 'qs';
 import Pug from 'pug';
 import i18next from 'i18next';
 import ru from './locales/ru.js';
+import en from './locales/en.js';
 // @ts-ignore
 
 import addRoutes from './routes/index.js';
@@ -60,11 +61,12 @@ const setUpStaticAssets = (app) => {
 const setupLocalization = async () => {
   await i18next
     .init({
-      lng: 'ru',
-      fallbackLng: 'en',
+      lng: 'en',
+      fallbackLng: 'ru',
       // debug: isDevelopment,
       resources: {
         ru,
+        en,
       },
     });
 };
