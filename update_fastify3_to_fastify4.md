@@ -3,7 +3,7 @@
 Удалите библиотеки командой:
 
 ```shell
-npm remove \
+npm uninstall \
   fastify \
   fastify-cli \
   fastify-static \
