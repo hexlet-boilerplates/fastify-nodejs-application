@@ -11,7 +11,10 @@ describe('requests', () => {
   let app;
 
   beforeAll(async () => {
-    app = fastify({ logger: { prettyPrint: true } });
+    app = fastify({
+      exposeHeadRoutes: false,
+      logger: { target: 'pino-pretty' },
+    });
     await init(app);
   });
 
