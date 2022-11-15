@@ -39,7 +39,7 @@
       "@fastify/static": "^6.5.0",
       "@fastify/view": "^7.1.0",
       "bootstrap": "^5.2.0",
-      "fastify": "^4.5.2",
+      "fastify": "^4.8.1",
       "fastify-cli": "^5.1.0",
       "fastify-error-page": "^4.0.0",
       "fastify-method-override": "^1.5.9",
