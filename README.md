@@ -12,7 +12,7 @@ make setup
 
 ```bash
 $ make start
-# Open localhost:6000
+# Open localhost:5000
 ```
 
 ---
