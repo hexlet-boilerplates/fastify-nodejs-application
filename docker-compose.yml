@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile.dev
     ports:
-      - "8080:3000"
+      - "3000:3000"
     environment:
       - NODE_ENV=development
       - SESSION_KEY=${SESSION_KEY:-4fe91796c30bd989d95b62dc46c7c3ba0b6aa2df2187400586a4121c54c53b85}
@@ -12,4 +12,4 @@ services:
       - .:/app
       - /app/node_modules
     restart: unless-stopped
-    command: bash -c "npx knex migrate:latest && npm start -- --watch --verbose-watch --ignore-watch='node_modules .git .sqlite'"
+    command: bash -c "npm ci --legacy-peer-deps && make build && make db-migrate && make start-backend"

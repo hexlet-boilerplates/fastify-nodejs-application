@@ -26,10 +26,12 @@ docker compose logs -f
 docker compose down
 ```
 
-Приложение будет доступно на http://localhost:8080
+Приложение будет доступно на http://localhost:3000
 
 ## Особенности
 
+- **Легковесный образ**: Docker образ содержит только окружение (Node.js + build tools), без зависимостей проекта
+- **Runtime dependencies**: зависимости устанавливаются при запуске контейнера и хранятся в volume
 - **Hot-reload**: изменения в коде автоматически применяются без перезапуска контейнера
 - **Legacy dependencies**: используется флаг `--legacy-peer-deps` для работы со старыми зависимостями
 - **Volume mounting**: исходный код монтируется в контейнер, не нужно пересобирать образ после изменений
@@ -56,11 +58,17 @@ docker compose build
 # Пересобрать без использования кэша
 docker compose build --no-cache
 
+# Установить зависимости (если контейнер не запущен)
+docker compose run --rm app npm ci --legacy-peer-deps
+
 # Запустить команду внутри контейнера
 docker compose exec app bash
 
-# Установить дополнительные зависимости
+# Установить дополнительную зависимость
 docker compose exec app npm install --legacy-peer-deps <package-name>
+
+# Обновить зависимости
+docker compose exec app npm ci --legacy-peer-deps
 
 # Просмотр логов
 docker compose logs -f
@@ -85,12 +93,17 @@ docker compose exec app npm run lint
 
 ### Проблемы с установкой зависимостей
 
-Dockerfile.dev использует флаг `--legacy-peer-deps` для работы со старыми зависимостями. Если возникают проблемы:
+Зависимости устанавливаются при запуске контейнера с флагом `--legacy-peer-deps`. Если возникают проблемы:
 
-1. Пересоберите образ без кэша:
+1. Удалите volume с node_modules и переустановите зависимости:
 ```bash
 docker compose down -v
-docker compose build --no-cache
+docker compose up
+```
+
+2. Или установите зависимости вручную:
+```bash
+docker compose run --rm app npm ci --legacy-peer-deps
 docker compose up
 ```
 
@@ -102,13 +115,13 @@ docker compose up
 ls -la database.sqlite
 ```
 
-### Порт 8080 занят
+### Порт 3000 занят
 
 Измените порт в `docker-compose.yml`:
 
 ```yaml
 ports:
-  - "3000:8080"  # Внешний:Внутренний
+  - "3000:3000"  # Внешний:Внутренний
 ```
 
 ### Изменения в коде не применяются

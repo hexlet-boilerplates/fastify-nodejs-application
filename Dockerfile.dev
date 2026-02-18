@@ -1,23 +1,14 @@
 FROM node:18-slim
 
+# Устанавливаем необходимые системные зависимости для окружения
 RUN apt-get update && apt-get install -yq \
   build-essential \
   python3 \
-  make
+  make \
+  && rm -rf /var/lib/apt/lists/*
 
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
 WORKDIR /app
 
-COPY package.json .
-COPY package-lock.json .
-
-# Используем --legacy-peer-deps для работы со старыми зависимостями
-RUN npm ci --legacy-peer-deps
-
 ENV NODE_ENV=development
-
-# Создаём директорию dist, чтобы не было предупреждения
-RUN mkdir -p dist
-
-CMD ["bash", "-c", "npm run build && npx knex migrate:latest && npm start -- --watch --verbose-watch --ignore-watch='node_modules .git .sqlite'"]
