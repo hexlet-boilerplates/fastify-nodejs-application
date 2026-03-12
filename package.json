@@ -51,13 +51,13 @@
       "knex": "^2.4.0",
       "lodash": "^4.17.23",
       "mini-css-extract-plugin": "^2.6.1",
-      "npm-check-updates": "^16.0.5",
+      "npm-check-updates": "^19.6.3",
       "objection": "^3.0.1",
       "objection-unique": "^1.2.2",
       "pino-pretty": "^9.0.1",
       "pug": "^3.0.2",
       "qs": "^6.11.0",
-      "sqlite3": "^5.0.11",
+      "sqlite3": "^6.0.1",
       "webpack": "^5.105.0"
    },
    "devDependencies": {
