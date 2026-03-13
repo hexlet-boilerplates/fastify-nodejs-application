@@ -1,0 +1,14 @@
+FROM node:18-slim
+
+# Устанавливаем необходимые системные зависимости для окружения
+RUN apt-get update && apt-get install -yq \
+  build-essential \
+  python3 \
+  make \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN ln -s /usr/bin/python3 /usr/bin/python
+
+WORKDIR /app
+
+ENV NODE_ENV=development
