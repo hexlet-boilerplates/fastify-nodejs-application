@@ -10,6 +10,8 @@
    "scripts": {
       "prebuild": "rm -rf dist",
       "test": "jest --verbose --runInBand",
+      "lint": "biome ci .",
+      "lint:fix": "biome check --write .",
       "build": "webpack",
       "start": "fastify start server/plugin.js -l debug -P -o"
    },
@@ -31,6 +33,9 @@
       "url": "https://github.com/hexlet-boilerplates/fastify-nodejs-application/issues"
    },
    "homepage": "https://github.com/hexlet-boilerplates/fastify-nodejs-application.git#readme",
+   "overrides": {
+      "better-sqlite3": "^13.0.2"
+   },
    "dependencies": {
       "@vscode/sqlite3": "^5.1.2",
       "@fastify/formbody": "^8.0.2",
@@ -61,15 +66,12 @@
       "webpack": "^5.105.4"
    },
    "devDependencies": {
+      "@biomejs/biome": "^2.5.6",
       "@jest/globals": "^30.3.0",
       "@types/jest": "^30.0.0",
       "@types/node": "^25.5.0",
       "css-loader": "^7.1.4",
       "dotenv": "^17.3.1",
-      "eslint": "^10.0.3",
-      "eslint-config-airbnb-base": "^15.0.0",
-      "eslint-plugin-import": "^2.32.0",
-      "eslint-plugin-jest": "^29.15.0",
       "jest": "^30.3.0",
       "jest-cli": "^30.3.0",
       "pino-pretty": "^13.1.3",

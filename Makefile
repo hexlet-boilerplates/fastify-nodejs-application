@@ -22,7 +22,7 @@ start-frontend:
 	npx webpack --watch --progress
 
 lint:
-	npx eslint .
+	npx biome ci .
 
 test:
 	npm test -s
