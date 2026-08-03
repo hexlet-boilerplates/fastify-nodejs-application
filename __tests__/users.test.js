@@ -30,8 +30,7 @@ describe('test users CRUD', () => {
     await prepareData(app);
   });
 
-  beforeEach(async () => {
-  });
+  beforeEach(async () => {});
 
   it('index', async () => {
     const response = await app.inject({
