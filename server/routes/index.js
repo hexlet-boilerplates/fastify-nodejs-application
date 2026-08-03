@@ -10,4 +10,8 @@ const controllers = [
   session,
 ];
 
-export default (app) => controllers.forEach((f) => f(app));
+export default (app) => {
+  controllers.forEach((f) => {
+    f(app);
+  });
+};

@@ -4,7 +4,7 @@ import i18next from 'i18next';
 
 export default (app) => {
   app
-    .get('/session/new', { name: 'newSession' }, (req, reply) => {
+    .get('/session/new', { name: 'newSession' }, (_req, reply) => {
       const signInForm = {};
       reply.render('session/new', { signInForm });
     })

@@ -1,6 +1,6 @@
 // @ts-check
 
-const crypto = require('crypto');
+const crypto = require('node:crypto');
 
 /**
  * @param {string} value

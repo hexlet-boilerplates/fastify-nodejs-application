@@ -1,7 +1,7 @@
 // @ts-check
 
-import { fileURLToPath } from 'url';
-import path from 'path';
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
 import fastifyStatic from '@fastify/static';
 // NOTE: не поддердивает fastify 4.x
 // import fastifyErrorPage from 'fastify-error-page';
@@ -19,7 +19,7 @@ import i18next from 'i18next';
 
 import ru from './locales/ru.js';
 import en from './locales/en.js';
-// @ts-ignore
+// @ts-expect-error
 import addRoutes from './routes/index.js';
 import getHelpers from './helpers/index.js';
 import * as knexConfig from '../knexfile.js';
@@ -105,11 +105,12 @@ const registerPlugins = async (app) => {
       failureRedirect: app.reverse('root'),
       failureFlash: i18next.t('flash.authError'),
     },
-  // @ts-ignore
+  // @ts-expect-error
   )(...args));
 
   await app.register(fastifyMethodOverride);
   await app.register(fastifyObjectionjs, {
+    // biome-ignore lint/performance/noDynamicNamespaceImportAccess: knexfile экспортирует конфиги по именам окружений
     knexConfig: knexConfig[mode],
     models,
   });
@@ -119,7 +120,6 @@ export const options = {
   exposeHeadRoutes: false,
 };
 
-// eslint-disable-next-line no-unused-vars
 export default async (app, _options) => {
   await registerPlugins(app);
 
