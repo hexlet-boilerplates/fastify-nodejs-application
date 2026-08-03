@@ -42,7 +42,7 @@
     "@fastify/passport": "^3.0.2",
     "@fastify/secure-session": "^8.3.0",
     "@fastify/sensible": "^6.0.4",
-    "@fastify/static": "^9.0.0",
+    "@fastify/static": "^10.1.2",
     "@fastify/view": "^11.1.1",
     "bootstrap": "^5.3.8",
     "fastify": "^5.8.2",
