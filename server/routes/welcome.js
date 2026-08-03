@@ -2,10 +2,10 @@
 
 export default (app) => {
   app
-    .get('/', { name: 'root' }, (req, reply) => {
+    .get('/', { name: 'root' }, (_req, reply) => {
       reply.render('welcome/index');
     })
-    .get('/protected', { name: 'protected', preValidation: app.authenticate }, (req, reply) => {
+    .get('/protected', { name: 'protected', preValidation: app.authenticate }, (_req, reply) => {
       reply.render('welcome/index');
     });
 };

@@ -4,12 +4,12 @@ import i18next from 'i18next';
 
 export default (app) => {
   app
-    .get('/users', { name: 'users' }, async (req, reply) => {
+    .get('/users', { name: 'users' }, async (_req, reply) => {
       const users = await app.objection.models.user.query();
       reply.render('users/index', { users });
       return reply;
     })
-    .get('/users/new', { name: 'newUser' }, (req, reply) => {
+    .get('/users/new', { name: 'newUser' }, (_req, reply) => {
       const user = new app.objection.models.user();
       reply.render('users/new', { user });
     })

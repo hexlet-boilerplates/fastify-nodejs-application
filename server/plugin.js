@@ -1,7 +1,7 @@
 // @ts-check
 
-import { fileURLToPath } from 'url';
-import path from 'path';
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
 import fastifyStatic from '@fastify/static';
 // NOTE: не поддердивает fastify 4.x
 // import fastifyErrorPage from 'fastify-error-page';
@@ -11,7 +11,6 @@ import fastifySecureSession from '@fastify/secure-session';
 import fastifyPassport from '@fastify/passport';
 import fastifySensible from '@fastify/sensible';
 import { plugin as fastifyReverseRoutes } from 'fastify-reverse-routes';
-import fastifyMethodOverride from 'fastify-method-override';
 import fastifyObjectionjs from 'fastify-objectionjs';
 import qs from 'qs';
 import Pug from 'pug';
@@ -19,11 +18,12 @@ import i18next from 'i18next';
 
 import ru from './locales/ru.js';
 import en from './locales/en.js';
-// @ts-ignore
+// @ts-expect-error
 import addRoutes from './routes/index.js';
 import getHelpers from './helpers/index.js';
 import * as knexConfig from '../knexfile.js';
 import models from './models/index.js';
+import fastifyMethodOverride from './lib/methodOverride.js';
 import FormStrategy from './lib/passportStrategies/FormStrategy.js';
 
 const __dirname = fileURLToPath(path.dirname(import.meta.url));
@@ -59,16 +59,15 @@ const setUpStaticAssets = (app) => {
 };
 
 const setupLocalization = async () => {
-  await i18next
-    .init({
-      lng: 'en',
-      fallbackLng: 'ru',
-      // debug: isDevelopment,
-      resources: {
-        ru,
-        en,
-      },
-    });
+  await i18next.init({
+    lng: 'en',
+    fallbackLng: 'ru',
+    // debug: isDevelopment,
+    resources: {
+      ru,
+      en,
+    },
+  });
 };
 
 const addHooks = (app) => {
@@ -91,25 +90,28 @@ const registerPlugins = async (app) => {
     },
   });
 
-  fastifyPassport.registerUserDeserializer(
-    (user) => app.objection.models.user.query().findById(user.id),
+  fastifyPassport.registerUserDeserializer((user) =>
+    app.objection.models.user.query().findById(user.id),
   );
   fastifyPassport.registerUserSerializer((user) => Promise.resolve(user));
   fastifyPassport.use(new FormStrategy('form', app));
   await app.register(fastifyPassport.initialize());
   await app.register(fastifyPassport.secureSession());
   await app.decorate('fp', fastifyPassport);
-  app.decorate('authenticate', (...args) => fastifyPassport.authenticate(
-    'form',
-    {
-      failureRedirect: app.reverse('root'),
-      failureFlash: i18next.t('flash.authError'),
-    },
-  // @ts-ignore
-  )(...args));
+  app.decorate('authenticate', (...args) =>
+    fastifyPassport.authenticate(
+      'form',
+      {
+        failureRedirect: app.reverse('root'),
+        failureFlash: i18next.t('flash.authError'),
+      },
+      // @ts-expect-error
+    )(...args),
+  );
 
   await app.register(fastifyMethodOverride);
   await app.register(fastifyObjectionjs, {
+    // biome-ignore lint/performance/noDynamicNamespaceImportAccess: knexfile экспортирует конфиги по именам окружений
     knexConfig: knexConfig[mode],
     models,
   });
@@ -119,7 +121,6 @@ export const options = {
   exposeHeadRoutes: false,
 };
 
-// eslint-disable-next-line no-unused-vars
 export default async (app, _options) => {
   await registerPlugins(app);
 
