@@ -1,0 +1,18 @@
+<%
+  const propertyErrors = it._.get(it.errors ?? {}, it.propertyName);
+  const hasError = !it._.isEmpty(propertyErrors);
+  const inputId = `data_${it.propertyName}`;
+%>
+<div class="mb-3">
+  <label for="<%= inputId %>"><%= it.propertyName %></label>
+  <input
+    class="form-control <%= hasError ? 'is-invalid' : '' %>"
+    id="<%= inputId %>"
+    name="data[<%= it.propertyName %>]"
+    type="<%= it.type ?? 'text' %>"
+    value="<%= it._.get(it.entity, it.propertyName, '') %>"
+  >
+  <% if (hasError) { %>
+  <div class="invalid-feedback"><%= propertyErrors.map(({ message }) => message).join('. ') %></div>
+  <% } %>
+</div>

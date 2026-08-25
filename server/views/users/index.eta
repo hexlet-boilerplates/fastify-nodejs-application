@@ -1,0 +1,19 @@
+<% layout("../layouts/application") %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= it.t('views.users.id') %></th>
+      <th><%= it.t('views.users.email') %></th>
+      <th><%= it.t('views.users.createdAt') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% it.users.forEach((user) => { %>
+    <tr>
+      <td><%= user.id %></td>
+      <td><%= user.email %></td>
+      <td><%= it.formatDate(user.createdAt) %></td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>

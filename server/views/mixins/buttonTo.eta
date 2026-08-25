@@ -1,0 +1,4 @@
+<form action="<%= it.action %>" method="post">
+  <input name="_method" type="hidden" value="<%= it.method %>">
+  <input class="<%= it.class %>" type="submit" value="<%= it.value %>">
+</form>

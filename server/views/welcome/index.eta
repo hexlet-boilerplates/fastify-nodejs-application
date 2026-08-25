@@ -1,0 +1,9 @@
+<% layout("../layouts/application") %>
+<div class="card">
+  <div class="card-body p-5 bg-light">
+    <div class="display-4"><%= it.t('views.welcome.index.hello') %></div>
+    <p class="lead"><%= it.t('views.welcome.index.description') %></p>
+    <hr>
+    <a class="btn btn-primary btn-lg" href="https://hexlet.io"><%= it.t('views.welcome.index.more') %></a>
+  </div>
+</div>

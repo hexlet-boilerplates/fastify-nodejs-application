@@ -1,0 +1,6 @@
+<% layout("../layouts/application", { header: it.t('views.users.new.signUp') }) %>
+<form action="<%= it.route('users') %>" method="post">
+  <%~ include("../mixins/input", { entity: it.user, propertyName: 'email', errors: it.errors, type: 'text' }) %>
+  <%~ include("../mixins/input", { entity: it.user, propertyName: 'password', errors: it.errors, type: 'password' }) %>
+  <%~ include("../mixins/submit", { value: it.t('views.users.new.submit') }) %>
+</form>

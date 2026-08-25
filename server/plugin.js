@@ -13,7 +13,7 @@ import fastifySensible from '@fastify/sensible';
 import { plugin as fastifyReverseRoutes } from 'fastify-reverse-routes';
 import fastifyObjectionjs from 'fastify-objectionjs';
 import qs from 'qs';
-import Pug from 'pug';
+import { Eta } from 'eta';
 import i18next from 'i18next';
 
 import ru from './locales/ru.js';
@@ -33,11 +33,12 @@ const mode = process.env.NODE_ENV || 'development';
 
 const setUpViews = (app) => {
   const helpers = getHelpers(app);
+  const eta = new Eta();
+
   app.register(fastifyView, {
     engine: {
-      pug: Pug,
+      eta,
     },
-    includeViewExtension: true,
     defaultContext: {
       ...helpers,
       assetPath: (filename) => `/assets/${filename}`,
