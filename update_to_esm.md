@@ -1,10 +1,10 @@
 Для обновления проекта предыдущей версии с использованием babel до актуальной версии нужно будет выполнить несколько действий:
 
-* Переименуйте файл *webpack.config.babel.js* в *webpack.config.js*
-* Удалите конфигурацию babel, файл *babel.config.js* и все зависимости связанные с babel
-* В файлах *webpack.config.js*, *knexfile.js* и всех миграциях _migrations/*.js_ нужно заменить использование синтаксиса commonjs (`require`, `module.exports`, `__dirname`) на аналогичный es6
-* В *package.json* добавьте свойство `"type": "module"`
-* Обновите версии зависимостей *knex*, *objection*, *objection-unique*, *fastify-objectionjs*, и установите зависимость *@vscode/sqlite3*. Используйте версии пакетов как в [текущем репозитории](./package.json)
-* У файлов содержащих описания моделей _models/*.js_ и *lib/secure.js* необходимо изменить расширение на _*.cjs_, и использовать в них синтаксис commonjs. Смотрите примеры: [models](./server/models/), [encrypt.cjs](./server/lib/secure.cjs)
-* Добавьте использование базового класса [BaseModel](./server/models/BaseModel.cjs)
-* В модели [User.cjs](./server/models/User.cjs) в json схеме замените для поля `email` свойство `format: email` на `minLength: 1`
+- Переименуйте файл _webpack.config.babel.js_ в _webpack.config.js_
+- Удалите конфигурацию babel, файл _babel.config.js_ и все зависимости связанные с babel
+- В файлах _webpack.config.js_, _knexfile.js_ и всех миграциях _migrations/*.js_ нужно заменить использование синтаксиса commonjs (`require`, `module.exports`, `__dirname`) на аналогичный es6
+- В _package.json_ добавьте свойство `"type": "module"`
+- Обновите версии зависимостей _knex_, _objection_, _objection-unique_, _fastify-objectionjs_, и установите зависимость _@vscode/sqlite3_. Используйте версии пакетов как в [текущем репозитории](./package.json)
+- У файлов содержащих описания моделей _models/*.js_ и _lib/secure.js_ необходимо изменить расширение на _*.cjs_, и использовать в них синтаксис commonjs. Смотрите примеры: [models](./server/models/), [encrypt.cjs](./server/lib/secure.cjs)
+- Добавьте использование базового класса [BaseModel](./server/models/BaseModel.cjs)
+- В модели [User.cjs](./server/models/User.cjs) в json схеме замените для поля `email` свойство `format: email` на `minLength: 1`

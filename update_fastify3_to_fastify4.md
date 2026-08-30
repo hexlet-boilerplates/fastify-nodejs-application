@@ -41,4 +41,3 @@ npm i \
 | point-of-view | @fastify/view |
 
 Библиотека `fastify-error-page` пока не поддерживает fastify 4.x
-
