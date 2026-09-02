@@ -47,7 +47,7 @@
     "@vscode/sqlite3": "^5.1.2",
     "bootstrap": "^5.3.8",
     "eta": "^4.6.0",
-    "fastify": "^5.8.2",
+    "fastify": "^5.12.1",
     "fastify-cli": "^8.0.0",
     "fastify-error-page": "^4.0.0",
     "fastify-objectionjs": "^2.0.1",
