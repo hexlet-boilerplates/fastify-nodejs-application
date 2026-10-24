@@ -5,3 +5,8 @@ heroku = "latest"
 # hk запускает проверки из hk.pkl в git-хуках и в CI (`hk check --all`)
 hk = "latest"
 pkl = "latest"
+# Проверки документации и workflow, jactionlint вызывает shellcheck для блоков run
+rumdl = "latest"
+typos = "latest"
+jactionlint = "latest"
+shellcheck = "latest"

@@ -8,12 +8,23 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  # Выкладка образа не прерывается новым запуском, он ждёт своей очереди
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
       # Node берётся из mise.toml
       - uses: jdx/mise-action@v5
       - run: make setup
@@ -24,10 +35,13 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     if: ${{ github.event_name == 'push' }}
 
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - uses: docker/setup-buildx-action@v4
 

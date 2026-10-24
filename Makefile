@@ -27,6 +27,9 @@ start-frontend:
 
 lint:
 	npx oxlint --deny-warnings && npx oxfmt --check
+	rumdl check .
+	typos
+	jactionlint
 
 test:
 	npm test -s

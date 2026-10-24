@@ -9,13 +9,19 @@ updates:
     patterns:
       - "*"
     multi-ecosystem-group: all-dependencies
+    cooldown:
+      default-days: 7
   - package-ecosystem: npm
     directory: /
     patterns:
       - "*"
     multi-ecosystem-group: all-dependencies
+    cooldown:
+      default-days: 7
   - package-ecosystem: docker
     directory: /
     patterns:
       - "*"
     multi-ecosystem-group: all-dependencies
+    cooldown:
+      default-days: 7
