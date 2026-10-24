@@ -2,6 +2,29 @@
 
 lockfile_version = 3
 
+[[tools.hadolint]]
+version = "2.15.1"
+backend = "aqua:hadolint/hadolint"
+specifiers = ["latest"]
+
+[tools.hadolint."platforms.linux-arm64"]
+checksum = "sha256:f6198ef8090f404dbb771abfee086eb8c48ac177f30da7fd3510aca35b344b5d"
+url = "https://github.com/hadolint/hadolint/releases/download/v2.15.1/hadolint-linux-arm64"
+url_api = "https://api.github.com/repos/hadolint/hadolint/releases/assets/496546507"
+provenance = "github-attestations"
+
+[tools.hadolint."platforms.linux-x64"]
+checksum = "sha256:c7187db94eeeeca956519a6af171adc31453941a1e777961f6e680f697c8c507"
+url = "https://github.com/hadolint/hadolint/releases/download/v2.15.1/hadolint-linux-x86_64"
+url_api = "https://api.github.com/repos/hadolint/hadolint/releases/assets/496546506"
+provenance = "github-attestations"
+
+[tools.hadolint."platforms.macos-arm64"]
+checksum = "sha256:5c09f3213f8e40406abe048233d985eebef336d4a6a20021be47fadb6cf480a2"
+url = "https://github.com/hadolint/hadolint/releases/download/v2.15.1/hadolint-macos-arm64"
+url_api = "https://api.github.com/repos/hadolint/hadolint/releases/assets/496546505"
+provenance = "github-attestations"
+
 [[tools.heroku]]
 version = "11.12.1"
 aube = { path = ".mise/locks/heroku/11.12.1", digest = "sha256:0edb4a7e03087afad4b75e4876fc095368be34fe3d5f7e4917c9a769115495d7" }

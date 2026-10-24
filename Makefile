@@ -31,6 +31,7 @@ lint:
 	typos
 	jactionlint
 	$(MAKE) --no-print-directory knip
+	hadolint Dockerfile
 
 test:
 	npm test -s
