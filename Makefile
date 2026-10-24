@@ -30,6 +30,11 @@ lint:
 	rumdl check .
 	typos
 	jactionlint
+	$(MAKE) --no-print-directory knip
 
 test:
 	npm test -s
+
+# Только отчёт, без --fix: находки решает человек
+knip:
+	npx knip

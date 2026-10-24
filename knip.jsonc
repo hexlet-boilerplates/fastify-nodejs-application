@@ -1,0 +1,13 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema-jsonc.json",
+  "entry": [
+    // Запускается из make db-migrate (node server/db/migrate.js)
+    "server/db/migrate.js",
+  ],
+  "ignoreDependencies": [
+    // Запускается руками (npx ncu -u), в коде не импортируется
+    "npm-check-updates",
+    // fastify start ... -P подключает pretty-логи по имени пакета
+    "pino-pretty",
+  ],
+}
