@@ -34,3 +34,5 @@ export const production = {
   useNullAsDefault: true,
   migrations,
 };
+
+export default { development, test, production };

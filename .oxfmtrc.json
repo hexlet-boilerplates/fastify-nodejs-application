@@ -1,0 +1,16 @@
+{
+  "singleQuote": true,
+  "printWidth": 100,
+  "ignorePatterns": [
+    "node_modules/",
+    "dist/",
+    "db/",
+    "server/migrations/",
+    ".mise/",
+    "package-lock.json",
+    "*.json",
+    "*.md",
+    "*.yml",
+    "*.yaml"
+  ]
+}

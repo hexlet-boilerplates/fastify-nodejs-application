@@ -22,7 +22,7 @@ start-frontend:
 	npx webpack --watch --progress
 
 lint:
-	npx biome ci .
+	npx oxlint --deny-warnings && npx oxfmt --check
 
 test:
 	npm test -s

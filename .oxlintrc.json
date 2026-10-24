@@ -1,0 +1,13 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oxc-project/oxc/main/npm/oxlint/configuration_schema.json",
+  "plugins": ["unicorn", "oxc", "import", "promise", "node", "jest"],
+  "categories": {
+    "correctness": "error"
+  },
+  "env": {
+    "builtin": true,
+    "browser": true,
+    "node": true
+  },
+  "ignorePatterns": ["**/node_modules/**", "**/dist/**", "**/db/**", "**/.mise/**", "server/migrations/**"]
+}

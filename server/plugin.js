@@ -21,7 +21,7 @@ import en from './locales/en.js';
 // @ts-expect-error
 import addRoutes from './routes/index.js';
 import getHelpers from './helpers/index.js';
-import * as knexConfig from '../knexfile.js';
+import knexConfigs from '../knexfile.js';
 import models from './models/index.js';
 import fastifyMethodOverride from '@hexlet/fastify-method-override';
 import FormStrategy from './lib/passportStrategies/FormStrategy.js';
@@ -112,8 +112,7 @@ const registerPlugins = async (app) => {
 
   await app.register(fastifyMethodOverride);
   await app.register(fastifyObjectionjs, {
-    // biome-ignore lint/performance/noDynamicNamespaceImportAccess: knexfile экспортирует конфиги по именам окружений
-    knexConfig: knexConfig[mode],
+    knexConfig: knexConfigs[mode],
     models,
   });
 };

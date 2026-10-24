@@ -10,8 +10,8 @@
   "scripts": {
     "prebuild": "rm -rf dist",
     "test": "jest --verbose --runInBand",
-    "lint": "biome ci .",
-    "lint:fix": "biome check --write .",
+    "lint": "oxlint --deny-warnings && oxfmt --check",
+    "lint:fix": "oxfmt && oxlint --fix",
     "build": "webpack",
     "start": "fastify start server/plugin.js -l debug -P -o"
   },
@@ -66,7 +66,6 @@
     "webpack": "^5.112.2"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.6.2",
     "@jest/globals": "^30.5.2",
     "@types/jest": "^30.0.0",
     "@types/node": "^26.6.5",
@@ -74,6 +73,8 @@
     "dotenv": "^18.0.9",
     "jest": "^30.5.2",
     "jest-cli": "^30.5.2",
+    "oxfmt": "^0.74.0",
+    "oxlint": "^1.89.0",
     "pino-pretty": "^13.2.0",
     "style-loader": "^4.0.0",
     "webpack-cli": "^7.2.3"
