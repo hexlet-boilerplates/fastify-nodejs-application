@@ -6,7 +6,7 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["**", "!dist", "!db", "!server/migrations", "!package-lock.json"]
+    "includes": ["**", "!dist", "!db", "!server/migrations", "!package-lock.json", "!.mise"]
   },
   "linter": {
     "enabled": true,

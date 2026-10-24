@@ -1,0 +1,4 @@
+[tools]
+node = "latest"
+# Нужен для make start (heroku local)
+heroku = "latest"

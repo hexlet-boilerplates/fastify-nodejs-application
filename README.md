@@ -2,6 +2,10 @@
 
 [![Node CI](https://github.com/hexlet-boilerplates/fastify-nodejs-application/workflows/Node%20CI/badge.svg)](https://github.com/hexlet-boilerplates/fastify-nodejs-application/actions)
 
+## Requirements
+
+Needs [mise](https://mise.jdx.dev): it installs Node.js and the Heroku CLI from `mise.toml`.
+
 ## Setup
 
 ```bash
