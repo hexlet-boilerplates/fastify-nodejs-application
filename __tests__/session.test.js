@@ -2,11 +2,11 @@
 
 import fastify from 'fastify';
 import init from '../server/plugin.js';
+import { runMigrations } from '../server/db/index.js';
 import { getTestData, prepareData } from './helpers/index.js';
 
 describe('test session', () => {
   let app;
-  let knex;
   let testData;
 
   beforeAll(async () => {
@@ -15,9 +15,8 @@ describe('test session', () => {
       logger: { target: 'pino-pretty' },
     });
     await init(app);
-    knex = app.objection.knex;
-    await knex.migrate.latest();
-    await prepareData(app);
+    runMigrations(app.db);
+    prepareData(app);
     testData = getTestData();
   });
 

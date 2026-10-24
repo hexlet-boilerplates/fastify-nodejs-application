@@ -4,13 +4,13 @@ import _ from 'lodash';
 import fastify from 'fastify';
 
 import init from '../server/plugin.js';
-import encrypt from '../server/lib/secure.cjs';
+import encrypt from '../server/lib/secure.js';
+import { runMigrations } from '../server/db/index.js';
+import { findByEmail } from '../server/lib/users.js';
 import { getTestData, prepareData } from './helpers/index.js';
 
 describe('test users CRUD', () => {
   let app;
-  let knex;
-  let models;
   const testData = getTestData();
 
   beforeAll(async () => {
@@ -19,15 +19,13 @@ describe('test users CRUD', () => {
       logger: { target: 'pino-pretty' },
     });
     await init(app);
-    knex = app.objection.knex;
-    models = app.objection.models;
 
     // TODO: пока один раз перед тестами
     // тесты не должны зависеть друг от друга
     // перед каждым тестом выполняем миграции
     // и заполняем БД тестовыми данными
-    await knex.migrate.latest();
-    await prepareData(app);
+    runMigrations(app.db);
+    prepareData(app);
   });
 
   beforeEach(async () => {});
@@ -65,14 +63,8 @@ describe('test users CRUD', () => {
       ..._.omit(params, 'password'),
       passwordDigest: encrypt(params.password),
     };
-    const user = await models.user.query().findOne({ email: params.email });
+    const user = findByEmail(app.db, params.email);
     expect(user).toMatchObject(expected);
-  });
-
-  afterEach(async () => {
-    // Пока Segmentation fault: 11
-    // после каждого теста откатываем миграции
-    // await knex.migrate.rollback();
   });
 
   afterAll(async () => {

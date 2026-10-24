@@ -3,8 +3,7 @@
 import { URL } from 'node:url';
 import fs from 'node:fs';
 import path from 'node:path';
-
-// TODO: использовать для фикстур https://github.com/viglucci/simple-knex-fixtures
+import { users } from '../../server/db/schema.js';
 
 const getFixturePath = (filename) => path.join('..', '..', '__fixtures__', filename);
 const readFixture = (filename) =>
@@ -13,9 +12,7 @@ const getFixtureData = (filename) => JSON.parse(readFixture(filename));
 
 export const getTestData = () => getFixtureData('testData.json');
 
-export const prepareData = async (app) => {
-  const { knex } = app.objection;
-
+export const prepareData = (app) => {
   // получаем данные из фикстур и заполняем БД
-  await knex('users').insert(getFixtureData('users.json'));
+  app.db.insert(users).values(getFixtureData('users.json')).run();
 };

@@ -11,7 +11,6 @@ import fastifySecureSession from '@fastify/secure-session';
 import fastifyPassport from '@fastify/passport';
 import fastifySensible from '@fastify/sensible';
 import { plugin as fastifyReverseRoutes } from 'fastify-reverse-routes';
-import fastifyObjectionjs from 'fastify-objectionjs';
 import qs from 'qs';
 import { Eta } from 'eta';
 import i18next from 'i18next';
@@ -21,8 +20,8 @@ import en from './locales/en.js';
 // @ts-expect-error
 import addRoutes from './routes/index.js';
 import getHelpers from './helpers/index.js';
-import knexConfigs from '../knexfile.js';
-import models from './models/index.js';
+import { createDb, getFilename } from './db/index.js';
+import { findById } from './lib/users.js';
 import fastifyMethodOverride from '@hexlet/fastify-method-override';
 import FormStrategy from './lib/passportStrategies/FormStrategy.js';
 
@@ -79,7 +78,14 @@ const addHooks = (app) => {
   });
 };
 
+const setUpDatabase = (app) => {
+  const db = createDb(getFilename(mode));
+  app.decorate('db', db);
+  app.addHook('onClose', () => db.$client.close());
+};
+
 const registerPlugins = async (app) => {
+  setUpDatabase(app);
   await app.register(fastifySensible);
   // await app.register(fastifyErrorPage);
   await app.register(fastifyReverseRoutes);
@@ -91,9 +97,7 @@ const registerPlugins = async (app) => {
     },
   });
 
-  fastifyPassport.registerUserDeserializer((user) =>
-    app.objection.models.user.query().findById(user.id),
-  );
+  fastifyPassport.registerUserDeserializer((user) => findById(app.db, user.id));
   fastifyPassport.registerUserSerializer((user) => Promise.resolve(user));
   fastifyPassport.use(new FormStrategy('form', app));
   await app.register(fastifyPassport.initialize());
@@ -111,10 +115,6 @@ const registerPlugins = async (app) => {
   );
 
   await app.register(fastifyMethodOverride);
-  await app.register(fastifyObjectionjs, {
-    knexConfig: knexConfigs[mode],
-    models,
-  });
 };
 
 export const options = {

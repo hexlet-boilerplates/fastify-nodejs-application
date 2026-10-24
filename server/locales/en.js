@@ -3,6 +3,13 @@
 export default {
   translation: {
     appName: 'Fastify Boilerplate',
+    validation: {
+      required: 'Must not be empty',
+      users: {
+        emailTaken: 'This email is already registered',
+        passwordLength: 'Must be at least 3 characters',
+      },
+    },
     flash: {
       session: {
         create: {

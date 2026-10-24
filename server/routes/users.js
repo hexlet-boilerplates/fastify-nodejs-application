@@ -1,32 +1,33 @@
 // @ts-check
 
+import _ from 'lodash';
 import i18next from 'i18next';
+import { users } from '../db/schema.js';
+import { create, validate } from '../lib/users.js';
 
 export default (app) => {
   app
     .get('/users', { name: 'users' }, async (_req, reply) => {
-      const users = await app.objection.models.user.query();
-      reply.render('users/index', { users });
+      const allUsers = app.db.select().from(users).all();
+      reply.render('users/index', { users: allUsers });
       return reply;
     })
     .get('/users/new', { name: 'newUser' }, (_req, reply) => {
-      const user = new app.objection.models.user();
-      reply.render('users/new', { user });
+      reply.render('users/new', { user: {} });
     })
     .post('/users', async (req, reply) => {
-      const user = new app.objection.models.user();
-      user.$set(req.body.data);
+      const data = req.body.data;
+      const errors = validate(app.db, data);
 
-      try {
-        const validUser = await app.objection.models.user.fromJson(req.body.data);
-        await app.objection.models.user.query().insert(validUser);
-        req.flash('info', i18next.t('flash.users.create.success'));
-        reply.redirect(app.reverse('root'));
-      } catch ({ data }) {
+      if (!_.isEmpty(errors)) {
         req.flash('error', i18next.t('flash.users.create.error'));
-        reply.render('users/new', { user, errors: data });
+        reply.render('users/new', { user: data, errors });
+        return reply;
       }
 
+      create(app.db, data);
+      req.flash('info', i18next.t('flash.users.create.success'));
+      reply.redirect(app.reverse('root'));
       return reply;
     });
 };

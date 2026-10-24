@@ -3,6 +3,13 @@
 export default {
   translation: {
     appName: 'Fastify Шаблон',
+    validation: {
+      required: 'Не должно быть пустым',
+      users: {
+        emailTaken: 'Этот email уже зарегистрирован',
+        passwordLength: 'Не меньше 3 символов',
+      },
+    },
     flash: {
       session: {
         create: {

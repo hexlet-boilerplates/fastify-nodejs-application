@@ -4,7 +4,10 @@ install:
 	npm install
 
 db-migrate:
-	npx knex migrate:latest
+	node server/db/migrate.js
+
+db-generate:
+	npx drizzle-kit generate
 
 build:
 	npm run build

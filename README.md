@@ -12,6 +12,15 @@ Needs [mise](https://mise.jdx.dev): it installs Node.js and the Heroku CLI from 
 make setup
 ```
 
+## Database
+
+[Drizzle ORM](https://orm.drizzle.team) on the built-in `node:sqlite`. The schema is `server/db/schema.js`.
+
+```bash
+make db-generate # create a migration from the schema
+make db-migrate  # apply migrations
+```
+
 ## Run
 
 ```bash
