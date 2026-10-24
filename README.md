@@ -12,6 +12,8 @@ Needs [mise](https://mise.jdx.dev): it installs Node.js and the Heroku CLI from 
 make setup
 ```
 
+`make setup` also installs the git hooks through hk.
+
 ## Database
 
 [Drizzle ORM](https://orm.drizzle.team) on the built-in `node:sqlite`. The schema is `server/db/schema.js`.

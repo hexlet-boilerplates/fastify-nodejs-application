@@ -2,6 +2,7 @@ setup: prepare install db-migrate
 
 install:
 	npm install
+	mise exec -- hk install --mise
 
 db-migrate:
 	node server/db/migrate.js

@@ -17,7 +17,8 @@ jobs:
       # Node берётся из mise.toml
       - uses: jdx/mise-action@v5
       - run: make setup
-      - run: make lint
+      # Те же шаги, что в git-хуке: hk.pkl
+      - run: mise exec -- hk check --all
       - run: make test
 
   deploy:

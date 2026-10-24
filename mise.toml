@@ -2,3 +2,6 @@
 node = "latest"
 # Нужен для make start (heroku local)
 heroku = "latest"
+# hk запускает проверки из hk.pkl в git-хуках и в CI (`hk check --all`)
+hk = "latest"
+pkl = "latest"
