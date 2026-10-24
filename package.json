@@ -63,6 +63,7 @@
     "drizzle-kit": "^1.0.0-beta.22",
     "jest": "^30.5.2",
     "jest-cli": "^30.5.2",
+    "npm-check-updates": "^23.1.1",
     "oxfmt": "^0.74.0",
     "oxlint": "^1.89.0",
     "webpack-cli": "^7.2.3"
