@@ -3,8 +3,6 @@
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import fastifyStatic from '@fastify/static';
-// NOTE: не поддердивает fastify 4.x
-// import fastifyErrorPage from 'fastify-error-page';
 import fastifyView from '@fastify/view';
 import fastifyFormbody from '@fastify/formbody';
 import fastifySecureSession from '@fastify/secure-session';
@@ -87,7 +85,6 @@ const setUpDatabase = (app) => {
 const registerPlugins = async (app) => {
   setUpDatabase(app);
   await app.register(fastifySensible);
-  // await app.register(fastifyErrorPage);
   await app.register(fastifyReverseRoutes);
   await app.register(fastifyFormbody, { parser: qs.parse });
   await app.register(fastifySecureSession, {
