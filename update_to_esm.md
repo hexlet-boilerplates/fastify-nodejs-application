@@ -1,5 +1,4 @@
 Для обновления проекта предыдущей версии с использованием babel до актуальной версии нужно будет выполнить несколько действий:
-
 - Переименуйте файл _webpack.config.babel.js_ в _webpack.config.js_
 - Удалите конфигурацию babel, файл _babel.config.js_ и все зависимости связанные с babel
 - В файлах _webpack.config.js_, _knexfile.js_ и всех миграциях _migrations/*.js_ нужно заменить использование синтаксиса commonjs (`require`, `module.exports`, `__dirname`) на аналогичный es6

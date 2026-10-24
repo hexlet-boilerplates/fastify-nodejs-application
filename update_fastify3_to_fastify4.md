@@ -31,13 +31,13 @@ npm i \
 
 Замените файлы **server/plugin** и **server/lib/passportStrategies/FormStrategy.js** на новые из шаблона в этом репозитории. В этих файлах заменены импорты библиотек:
 
-| Старая | Новая |
-| --- | --- |
-| fastify-passport | @fastify/passport |
-| fastify-static | @fastify/static |
-| fastify-sensible | @fastify/sensible |
-| fastify-formbody | @fastify/formbody |
+| Старая                 | Новая                   |
+| ---------------------- | ----------------------- |
+| fastify-passport       | @fastify/passport       |
+| fastify-static         | @fastify/static         |
+| fastify-sensible       | @fastify/sensible       |
+| fastify-formbody       | @fastify/formbody       |
 | fastify-secure-session | @fastify/secure-session |
-| point-of-view | @fastify/view |
+| point-of-view          | @fastify/view           |
 
 Библиотека `fastify-error-page` пока не поддерживает fastify 4.x
