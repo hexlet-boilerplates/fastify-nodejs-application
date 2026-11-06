@@ -4,7 +4,7 @@
 
 ## Requirements
 
-Needs [mise](https://mise.jdx.dev): it installs Node.js and the project tools from `mise.toml`.
+Node.js 24 or newer. With [mise](https://mise.jdx.dev) `mise install` puts the Node.js version and the lint tools from `mise.toml`; mise is optional, `make setup` works without it.
 
 ## Setup
 
@@ -12,7 +12,7 @@ Needs [mise](https://mise.jdx.dev): it installs Node.js and the project tools fr
 make setup
 ```
 
-`make setup` also installs the git hooks through hk.
+Git hooks through hk need mise and are installed separately: `make hooks`.
 
 ## Database
 

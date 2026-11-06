@@ -2,6 +2,11 @@ setup: prepare install build db-migrate
 
 install:
 	npm install
+
+# mise пока раскатан не везде: его нет в образе автопроверки Хекслета и у части
+# студентов. Поэтому setup и install без него обходятся, а git-хуки hk ставятся
+# отдельной целью для тех, у кого mise есть.
+hooks:
 	mise exec -- hk install --mise
 
 db-migrate:
