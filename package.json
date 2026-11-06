@@ -41,7 +41,6 @@
     "@fastify/static": "^10.1.7",
     "@fastify/view": "^12.0.1",
     "@hexlet/fastify-method-override": "git+https://github.com/hexlet-components/fastify-method-override.git",
-    "bootstrap": "^5.3.8",
     "drizzle-orm": "^1.0.0-beta.22",
     "eta": "^4.6.0",
     "fastify": "^5.12.7",
@@ -55,6 +54,8 @@
   },
   "devDependencies": {
     "@jest/globals": "^30.5.2",
+    "@tailwindcss/forms": "^0.5.11",
+    "@tailwindcss/vite": "^4.3.5",
     "@types/jest": "^30.0.0",
     "@types/node": "^26.6.5",
     "dotenv": "^18.0.9",
@@ -65,6 +66,7 @@
     "npm-check-updates": "^23.1.1",
     "oxfmt": "^0.74.0",
     "oxlint": "^1.89.0",
+    "tailwindcss": "^4.3.5",
     "vite": "^8.3.5"
   },
   "allowScripts": {

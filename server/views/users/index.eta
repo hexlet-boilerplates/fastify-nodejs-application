@@ -1,19 +1,21 @@
 <% layout("../layouts/application") %>
-<table class="table table-striped">
+<div class="overflow-x-auto">
+<table class="mt-5 w-full bg-white text-left">
   <thead>
     <tr>
-      <th><%= it.t('views.users.id') %></th>
-      <th><%= it.t('views.users.email') %></th>
-      <th><%= it.t('views.users.createdAt') %></th>
+      <th class="px-3 py-3"><%= it.t('views.users.id') %></th>
+      <th class="px-3 py-3"><%= it.t('views.users.email') %></th>
+      <th class="px-3 py-3"><%= it.t('views.users.createdAt') %></th>
     </tr>
   </thead>
   <tbody>
     <% it.users.forEach((user) => { %>
-    <tr>
-      <td><%= user.id %></td>
-      <td><%= user.email %></td>
-      <td><%= it.formatDate(user.createdAt) %></td>
+    <tr class="odd:bg-gray-50">
+      <td class="px-3 py-2"><%= user.id %></td>
+      <td class="px-3 py-2"><%= user.email %></td>
+      <td class="px-3 py-2"><%= it.formatDate(user.createdAt) %></td>
     </tr>
     <% }) %>
   </tbody>
 </table>
+</div>

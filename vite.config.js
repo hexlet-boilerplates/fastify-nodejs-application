@@ -1,20 +1,18 @@
 // @ts-check
 
+import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
 
-// Сборка отдаёт main.js и main.css, на них ссылается server/views/layouts/application.eta
+// Собирается только стиль: клиентского js у приложения нет, страницы рендерит шаблонизатор на сервере.
+// Имя файла фиксировано, потому что шаблон зовёт его как main.css.
 export default defineConfig({
+  plugins: [tailwindcss()],
   build: {
     outDir: 'dist',
     emptyOutDir: true,
-    cssCodeSplit: false,
     rollupOptions: {
-      input: 'src/index.js',
-      output: {
-        format: 'iife',
-        entryFileNames: 'main.js',
-        assetFileNames: 'main[extname]',
-      },
+      input: 'assets/css/source.css',
+      output: { assetFileNames: 'main.css' },
     },
   },
 });

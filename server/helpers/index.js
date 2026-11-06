@@ -13,14 +13,12 @@ export default (app) => ({
   _,
   getAlertClass(type) {
     switch (type) {
-      // case 'failure':
-      //   return 'danger';
       case 'error':
-        return 'danger';
+        return 'border-red-300 bg-red-50 text-red-900';
       case 'success':
-        return 'success';
+        return 'border-green-300 bg-green-50 text-green-900';
       case 'info':
-        return 'info';
+        return 'border-blue-300 bg-blue-50 text-blue-900';
       default:
         throw new Error(`Unknown flash type: '${type}'`);
     }

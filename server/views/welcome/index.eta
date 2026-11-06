@@ -1,9 +1,6 @@
 <% layout("../layouts/application") %>
-<div class="card">
-  <div class="card-body p-5 bg-light">
-    <div class="display-4"><%= it.t('views.welcome.index.hello') %></div>
-    <p class="lead"><%= it.t('views.welcome.index.description') %></p>
-    <hr>
-    <a class="btn btn-primary btn-lg" href="https://hexlet.io"><%= it.t('views.welcome.index.more') %></a>
-  </div>
+<div class="rounded-lg bg-white p-10 shadow">
+  <div class="text-4xl font-bold"><%= it.t('views.welcome.index.hello') %></div>
+  <p class="mt-2 text-xl text-gray-600"><%= it.t('views.welcome.index.description') %></p>
+  <a class="mt-6 inline-block rounded bg-blue-600 px-6 py-3 text-lg font-bold text-white hover:bg-blue-700" href="https://hexlet.io" target="_blank"><%= it.t('views.welcome.index.more') %></a>
 </div>

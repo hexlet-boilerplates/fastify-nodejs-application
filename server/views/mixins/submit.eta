@@ -1,1 +1,5 @@
-<input class="btn btn-primary" type="submit" value="<%= it.value %>">
+<input
+  class="cursor-pointer rounded bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700"
+  type="submit"
+  value="<%= it.value %>"
+>

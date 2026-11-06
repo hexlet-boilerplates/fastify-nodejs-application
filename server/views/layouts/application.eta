@@ -1,61 +1,47 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Hexlet Fastify Boilerplate</title>
-    <script src="<%= it.assetPath('main.js') %>"></script>
-    <link href="<%= it.assetPath('main.css') %>" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title><%= it.t('appName') %></title>
+    <link href="<%= it.assetPath('main.css') %>" rel="stylesheet">
   </head>
-  <body class="d-flex flex-column min-vh-100">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="<%= it.route('root') %>"><%= it.t('appName') %></a>
-        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
-          <div class="container-fluid">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="<%= it.route('users') %>"><%= it.t('layouts.application.users') %></a>
-              </li>
-            </ul>
-          </div>
-          <ul class="navbar-nav">
-            <% if (it.isAuthenticated()) { %>
-            <li class="nav-item">
-              <%~ include("../mixins/buttonTo", {
-                action: it.route('session'),
-                method: 'delete',
-                class: 'btn nav-link',
-                value: it.t('layouts.application.signOut'),
-              }) %>
-            </li>
-            <% } else { %>
-            <li class="nav-item">
-              <a class="nav-link" href="<%= it.route('newSession') %>"><%= it.t('layouts.application.signIn') %></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<%= it.route('newUser') %>"><%= it.t('layouts.application.signUp') %></a>
-            </li>
-            <% } %>
-          </ul>
-        </div>
+  <body class="flex min-h-screen flex-col bg-gray-50">
+    <nav class="bg-white px-6 py-3">
+      <div class="mx-auto flex max-w-5xl flex-wrap items-center gap-6">
+        <a class="text-lg font-semibold" href="<%= it.route('root') %>"><%= it.t('appName') %></a>
+        <ul class="flex flex-wrap items-center gap-4">
+          <li><a class="hover:underline" href="<%= it.route('users') %>"><%= it.t('layouts.application.users') %></a></li>
+        </ul>
+        <ul class="ml-auto flex flex-wrap items-center gap-4">
+          <% if (it.isAuthenticated()) { %>
+          <li>
+            <%~ include("../mixins/buttonTo", {
+              action: it.route('session'),
+              method: 'delete',
+              class: 'cursor-pointer hover:underline',
+              value: it.t('layouts.application.signOut'),
+            }) %>
+          </li>
+          <% } else { %>
+          <li><a class="hover:underline" href="<%= it.route('newSession') %>"><%= it.t('layouts.application.signIn') %></a></li>
+          <li><a class="hover:underline" href="<%= it.route('newUser') %>"><%= it.t('layouts.application.signUp') %></a></li>
+          <% } %>
+        </ul>
       </div>
     </nav>
-    <div class="container wrapper flex-grow-1">
+    <div class="mx-auto w-full max-w-5xl grow px-4">
       <% Object.entries(it.reply.flash() || {}).forEach(([type, messages]) => { %>
         <% messages.forEach((message) => { %>
-        <div class="alert alert-<%= it.getAlertClass(type) %>" role="alert"><%= message %></div>
+        <div class="mt-4 rounded border px-4 py-3 <%= it.getAlertClass(type) %>" role="alert"><%= message %></div>
         <% }) %>
       <% }) %>
 
-      <h1 class="my-4"><%= it.header ?? '' %></h1>
+      <h1 class="mt-6 mb-4 text-4xl font-bold"><%= it.header ?? '' %></h1>
       <%~ it.body %>
     </div>
 
-    <footer>
-      <div class="container my-5 pt-4 border-top">
+    <footer class="mt-10 bg-gray-800 text-gray-100">
+      <div class="mx-auto max-w-5xl px-4 py-3">
         <a target="_blank" href="https://ru.hexlet.io">Hexlet</a>
       </div>
     </footer>

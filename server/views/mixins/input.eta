@@ -2,17 +2,18 @@
   const propertyErrors = it._.get(it.errors ?? {}, it.propertyName);
   const hasError = !it._.isEmpty(propertyErrors);
   const inputId = `data_${it.propertyName}`;
+  const border = hasError ? 'border-red-500' : 'border-gray-300';
 %>
-<div class="mb-3">
-  <label for="<%= inputId %>"><%= it.propertyName %></label>
+<div class="mb-4">
+  <label class="mb-1 block font-medium" for="<%= inputId %>"><%= it.propertyName %></label>
   <input
-    class="form-control <%= hasError ? 'is-invalid' : '' %>"
+    class="w-full rounded <%= border %>"
     id="<%= inputId %>"
     name="data[<%= it.propertyName %>]"
     type="<%= it.type ?? 'text' %>"
     value="<%= it._.get(it.entity, it.propertyName, '') %>"
   >
   <% if (hasError) { %>
-  <div class="invalid-feedback"><%= propertyErrors.map(({ message }) => message).join('. ') %></div>
+  <div class="mt-1 text-sm text-red-600"><%= propertyErrors.map(({ message }) => message).join('. ') %></div>
   <% } %>
 </div>
