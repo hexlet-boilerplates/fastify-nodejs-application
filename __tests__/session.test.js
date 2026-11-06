@@ -15,8 +15,8 @@ describe('test session', () => {
       logger: { target: 'pino-pretty' },
     });
     await init(app);
-    runMigrations(app.db);
-    prepareData(app);
+    await runMigrations(app.db);
+    await prepareData(app);
     testData = getTestData();
   });
 

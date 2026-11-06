@@ -7,30 +7,32 @@ import encrypt from './secure.js';
 
 const minPasswordLength = 3;
 
-export const findByEmail = (db, email) =>
-  db.select().from(users).where(eq(users.email, email)).get();
+export const findByEmail = async (db, email) => {
+  const [user] = await db.select().from(users).where(eq(users.email, email));
+  return user;
+};
 
-export const findById = (db, id) => db.select().from(users).where(eq(users.id, id)).get();
+export const findById = async (db, id) => {
+  const [user] = await db.select().from(users).where(eq(users.id, id));
+  return user;
+};
 
 export const verifyPassword = (user, password) => encrypt(password) === user.passwordDigest;
 
 export const create = (db, { email, password }) =>
-  db
-    .insert(users)
-    .values({ email, passwordDigest: encrypt(password) })
-    .run();
+  db.insert(users).values({ email, passwordDigest: encrypt(password) });
 
 /**
  * Возвращает ошибки в виде { поле: [{ message }] }, пустой объект означает валидные данные.
  */
-export const validate = (db, data) => {
+export const validate = async (db, data) => {
   const errors = {};
   const email = data?.email ?? '';
   const password = data?.password ?? '';
 
   if (email.length === 0) {
     errors.email = [{ message: i18next.t('validation.required') }];
-  } else if (findByEmail(db, email)) {
+  } else if (await findByEmail(db, email)) {
     errors.email = [{ message: i18next.t('validation.users.emailTaken') }];
   }
 

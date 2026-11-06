@@ -18,7 +18,7 @@ import en from './locales/en.js';
 // @ts-expect-error
 import addRoutes from './routes/index.js';
 import getHelpers from './helpers/index.js';
-import { createDb, getFilename } from './db/index.js';
+import { closeDb, createDb } from './db/index.js';
 import { findById } from './lib/users.js';
 import fastifyMethodOverride from '@hexlet/fastify-method-override';
 import FormStrategy from './lib/passportStrategies/FormStrategy.js';
@@ -77,9 +77,9 @@ const addHooks = (app) => {
 };
 
 const setUpDatabase = (app) => {
-  const db = createDb(getFilename(mode));
+  const db = createDb(mode);
   app.decorate('db', db);
-  app.addHook('onClose', () => db.$client.close());
+  app.addHook('onClose', () => closeDb(db));
 };
 
 const registerPlugins = async (app) => {

@@ -8,7 +8,7 @@ import { create, validate } from '../lib/users.js';
 export default (app) => {
   app
     .get('/users', { name: 'users' }, async (_req, reply) => {
-      const allUsers = app.db.select().from(users).all();
+      const allUsers = await app.db.select().from(users);
       reply.render('users/index', { users: allUsers });
       return reply;
     })
@@ -17,7 +17,7 @@ export default (app) => {
     })
     .post('/users', async (req, reply) => {
       const data = req.body.data;
-      const errors = validate(app.db, data);
+      const errors = await validate(app.db, data);
 
       if (!_.isEmpty(errors)) {
         req.flash('error', i18next.t('flash.users.create.error'));
@@ -25,7 +25,7 @@ export default (app) => {
         return reply;
       }
 
-      create(app.db, data);
+      await create(app.db, data);
       req.flash('info', i18next.t('flash.users.create.success'));
       reply.redirect(app.reverse('root'));
       return reply;

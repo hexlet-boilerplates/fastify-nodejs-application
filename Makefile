@@ -21,7 +21,7 @@ start:
 	$(MAKE) -j2 start-backend start-frontend
 
 start-backend:
-	npm start -- --watch --verbose-watch --ignore-watch='node_modules .git .sqlite'
+	npm start -- --watch --verbose-watch --ignore-watch='node_modules .git .pglite'
 
 start-frontend:
 	npx vite build --watch

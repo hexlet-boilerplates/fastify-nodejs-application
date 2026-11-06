@@ -12,7 +12,7 @@ const getFixtureData = (filename) => JSON.parse(readFixture(filename));
 
 export const getTestData = () => getFixtureData('testData.json');
 
-export const prepareData = (app) => {
+export const prepareData = async (app) => {
   // получаем данные из фикстур и заполняем БД
-  app.db.insert(users).values(getFixtureData('users.json')).run();
+  await app.db.insert(users).values(getFixtureData('users.json'));
 };

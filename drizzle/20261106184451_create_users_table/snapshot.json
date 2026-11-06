@@ -1,63 +1,80 @@
 {
-  "version": "7",
-  "dialect": "sqlite",
-  "id": "a34b6bce-7b62-4d87-908a-38b28450888f",
+  "version": "8",
+  "dialect": "postgres",
+  "id": "4e088445-dec0-456a-8367-4142ebc01317",
   "prevIds": [
     "00000000-0000-0000-0000-000000000000"
   ],
   "ddl": [
     {
+      "isRlsEnabled": false,
       "name": "users",
-      "entityType": "tables"
+      "entityType": "tables",
+      "schema": "public"
     },
     {
-      "type": "integer",
-      "notNull": false,
-      "autoincrement": true,
+      "type": "serial",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
       "default": null,
       "generated": null,
+      "identity": null,
       "name": "id",
       "entityType": "columns",
+      "schema": "public",
       "table": "users"
     },
     {
       "type": "text",
+      "typeSchema": null,
       "notNull": true,
-      "autoincrement": false,
+      "dimensions": 0,
       "default": null,
       "generated": null,
+      "identity": null,
       "name": "email",
       "entityType": "columns",
+      "schema": "public",
       "table": "users"
     },
     {
       "type": "text",
+      "typeSchema": null,
       "notNull": true,
-      "autoincrement": false,
+      "dimensions": 0,
       "default": null,
       "generated": null,
+      "identity": null,
       "name": "password_digest",
       "entityType": "columns",
+      "schema": "public",
       "table": "users"
     },
     {
-      "type": "integer",
+      "type": "timestamp",
+      "typeSchema": null,
       "notNull": true,
-      "autoincrement": false,
-      "default": "(unixepoch())",
+      "dimensions": 0,
+      "default": "now()",
       "generated": null,
+      "identity": null,
       "name": "created_at",
       "entityType": "columns",
+      "schema": "public",
       "table": "users"
     },
     {
-      "type": "integer",
+      "type": "timestamp",
+      "typeSchema": null,
       "notNull": true,
-      "autoincrement": false,
-      "default": "(unixepoch())",
+      "dimensions": 0,
+      "default": "now()",
       "generated": null,
+      "identity": null,
       "name": "updated_at",
       "entityType": "columns",
+      "schema": "public",
       "table": "users"
     },
     {
@@ -65,18 +82,21 @@
         "id"
       ],
       "nameExplicit": false,
-      "name": "users_pk",
+      "name": "users_pkey",
+      "schema": "public",
       "table": "users",
       "entityType": "pks"
     },
     {
+      "nameExplicit": false,
       "columns": [
         "email"
       ],
-      "nameExplicit": false,
-      "name": "users_email_unique",
-      "entityType": "uniques",
-      "table": "users"
+      "nullsNotDistinct": false,
+      "name": "users_email_key",
+      "schema": "public",
+      "table": "users",
+      "entityType": "uniques"
     }
   ],
   "renames": []

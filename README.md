@@ -16,7 +16,14 @@ make setup
 
 ## Database
 
-[Drizzle ORM](https://orm.drizzle.team) on the built-in `node:sqlite`. The schema is `server/db/schema.js`.
+[Drizzle ORM](https://orm.drizzle.team) on PostgreSQL. The schema is `server/db/schema.js`.
+
+The database is chosen by `DATABASE_URL`:
+
+- set (Render, your own server): the app connects to that PostgreSQL;
+- not set: the app runs [PGlite](https://pglite.dev), PostgreSQL embedded in the Node.js process, and keeps the data in `.pglite/`. Nothing to install, no Docker.
+
+Tests always use PGlite in memory.
 
 ```bash
 make db-generate # create a migration from the schema

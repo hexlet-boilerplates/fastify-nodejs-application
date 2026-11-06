@@ -24,8 +24,8 @@ describe('test users CRUD', () => {
     // тесты не должны зависеть друг от друга
     // перед каждым тестом выполняем миграции
     // и заполняем БД тестовыми данными
-    runMigrations(app.db);
-    prepareData(app);
+    await runMigrations(app.db);
+    await prepareData(app);
   });
 
   beforeEach(async () => {});
@@ -63,7 +63,7 @@ describe('test users CRUD', () => {
       ..._.omit(params, 'password'),
       passwordDigest: encrypt(params.password),
     };
-    const user = findByEmail(app.db, params.email);
+    const user = await findByEmail(app.db, params.email);
     expect(user).toMatchObject(expected);
   });
 

@@ -5,5 +5,5 @@ build/
 dist/
 tmp/
 temp/
-database.sqlite
+.pglite/
 .env
