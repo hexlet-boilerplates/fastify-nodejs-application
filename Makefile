@@ -16,8 +16,9 @@ build:
 prepare:
 	cp -n .env.example .env || true
 
+# Бэкенд и пересборка стилей идут параллельно, Ctrl+C гасит оба
 start:
-	heroku local -f Procfile.dev
+	$(MAKE) -j2 start-backend start-frontend
 
 start-backend:
 	npm start -- --watch --verbose-watch --ignore-watch='node_modules .git .sqlite'

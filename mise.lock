@@ -25,12 +25,6 @@ url = "https://github.com/hadolint/hadolint/releases/download/v2.15.1/hadolint-m
 url_api = "https://api.github.com/repos/hadolint/hadolint/releases/assets/496546505"
 provenance = "github-attestations"
 
-[[tools.heroku]]
-version = "11.12.1"
-aube = { path = ".mise/locks/heroku/11.12.1", digest = "sha256:0edb4a7e03087afad4b75e4876fc095368be34fe3d5f7e4917c9a769115495d7" }
-backend = "npm:heroku"
-specifiers = ["latest"]
-
 [[tools.hk]]
 version = "2.8.1"
 backend = "packslip:github.com/jdx/hk"

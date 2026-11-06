@@ -4,7 +4,7 @@
 
 ## Requirements
 
-Needs [mise](https://mise.jdx.dev): it installs Node.js and the Heroku CLI from `mise.toml`.
+Needs [mise](https://mise.jdx.dev): it installs Node.js and the project tools from `mise.toml`.
 
 ## Setup
 
@@ -27,7 +27,7 @@ make db-migrate  # apply migrations
 
 ```bash
 make start
-# Open localhost:5000
+# Open localhost:3000
 ```
 
 ---
