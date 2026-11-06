@@ -5,6 +5,8 @@
     "server/db/migrate.js",
   ],
   "ignoreDependencies": [
+    // Запускается из make start (npx concurrently), в коде не импортируется
+    "concurrently",
     // Запускается руками (npx ncu -u), в коде не импортируется
     "npm-check-updates",
     // fastify start ... -P подключает pretty-логи по имени пакета

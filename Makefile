@@ -16,9 +16,9 @@ build:
 prepare:
 	cp -n .env.example .env || true
 
-# Бэкенд и пересборка стилей идут параллельно, Ctrl+C гасит оба
+# Бэкенд и пересборка стилей идут параллельно с подписанным выводом; падение одного гасит оба
 start:
-	$(MAKE) -j2 start-backend start-frontend
+	npx concurrently -k -n backend,frontend "make start-backend" "make start-frontend"
 
 start-backend:
 	npm start -- --watch --verbose-watch --ignore-watch='node_modules .git .pglite'

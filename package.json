@@ -58,6 +58,7 @@
     "@tailwindcss/vite": "^4.3.5",
     "@types/jest": "^30.0.0",
     "@types/node": "^26.6.5",
+    "concurrently": "^10.0.6",
     "dotenv": "^18.0.9",
     "drizzle-kit": "^1.0.0-beta.22",
     "jest": "^30.5.2",
