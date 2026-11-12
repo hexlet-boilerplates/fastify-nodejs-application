@@ -60,7 +60,7 @@
     "@types/node": "^26.6.6",
     "concurrently": "^10.0.6",
     "dotenv": "^18.0.9",
-    "drizzle-kit": "^1.0.0-beta.22",
+    "drizzle-kit": "^1.0.0-rc.5",
     "jest": "^30.5.2",
     "jest-cli": "^30.5.2",
     "knip": "^6.44.1",
