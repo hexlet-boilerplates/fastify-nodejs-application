@@ -65,8 +65,8 @@
     "jest-cli": "^30.5.2",
     "knip": "^6.44.1",
     "npm-check-updates": "^23.1.1",
-    "oxfmt": "^0.76.0",
-    "oxlint": "^1.91.0",
+    "oxfmt": "^0.77.0",
+    "oxlint": "^1.92.0",
     "tailwindcss": "^4.3.5",
     "vite": "^8.3.6"
   },
